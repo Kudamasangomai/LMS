@@ -5,7 +5,7 @@
 
 
 <div class="card" >
-    <h5 class="card-header">list of Trip</h5>
+    <h5 class="card-header">List of Trip</h5>
     <div class="table-responsive text-nowrap">
       <table class="table">
         <thead class="table-dark">

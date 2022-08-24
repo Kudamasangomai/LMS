@@ -17,7 +17,7 @@
        
               <li class="nav-item">
              
-                <a class="nav-link" href="#"><i class="menu-icon tf-icons bx bxs-package"></i>Fuel Summary /</a>
+                <a class="nav-link" href="/trip"> <i class='menu-icon tf-icons bx bxs-truck'></i>Trips /</a>
               </li>
             
             

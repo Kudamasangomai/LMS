@@ -33,7 +33,11 @@ class DriverController extends Controller
      */
     public function create()
     {
-        //
+        $data = array(
+            'title'=>'Create Driver',
+        
+        );
+        return view('drivers.createdriver')->with($data);
     }
 
     /**
@@ -44,7 +48,25 @@ class DriverController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request,[
+          
+             'drivername' => 'required',
+             'driveremail' => 'required',
+             'driverlicenseno' => 'required',
+             'driverphonenumber'=>'required',
+             'drivernationalid'  =>'required',
+             
+         ]);
+
+         $driver = new driver();
+         $driver->driver_name = $request->input('drivername');
+         $driver->driver_email = $request->input('driveremail');
+         $driver->driver_license_no = $request->input('driverlicenseno');
+        $driver->driver_phonenumber = $request->input('driverphonenumber');
+        $driver->driver_id_no = $request->input('drivernationalid');
+        $driver->save();
+        return redirect('/drivers')->with('success','Driver Succefuly Created');
+          
     }
 
     /**
@@ -55,7 +77,12 @@ class DriverController extends Controller
      */
     public function show($id)
     {
-        //
+        $data = array(
+            'title' => 'Driver Detailed Infomation',
+            'driver' => driver::find($id),
+
+    );
+       return view('drivers.driverdetail')->with($data);
     }
 
     /**

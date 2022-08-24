@@ -4,14 +4,15 @@
 @include('inc.messages')
 
 
-
+<div class="container-xxl flex-grow-1 container-p-y">
     {!! Form::open([
         'method' => 'PUT' ,
         'action' => ['App\Http\Controllers\DriverController@update',$driver->id ],
         'enctype' => 'multipart/form-data']) 
         !!}
+        
         <div class="row">
-    <div class="mb-3 col-md-6">
+      <div class="mb-3 col-md-6">
         <label for="html5-number-input" class="col-md-6 col-form-label">Driver Name</label>
        
           <input class="form-control" 
@@ -65,5 +66,5 @@
       </div>
       {!! Form::close() !!}
 </div>
-
+</div>
 @endsection

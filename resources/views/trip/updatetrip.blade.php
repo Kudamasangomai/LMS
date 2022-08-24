@@ -69,10 +69,10 @@
             <input
               class="form-control"
               type="text"
-              value="" 
+              value="{{ $trip->closingkm }}" 
               id="closingodo"
               name="closingkm"
-              value="{{old('closingkm')}}"
+          
             />
                            
     </div>
@@ -84,7 +84,7 @@
         <input
           class="form-control"
           type="text"
-          value="{{old('distance')}}"
+          value="{{ $trip->distance }}"
           id="distance"
           name="distance"
           
@@ -98,7 +98,7 @@
     <input
       class="form-control"
       type="text"
-      value="{{old('fuelbeforetrip')}}"
+      value="{{ $trip->fuelbeforetrip }}"
       id="fuelbeforetrip"
       name="fuelbeforetrip"
 
@@ -113,7 +113,7 @@
       type="text"
       id="fuelused"
       name="fuelused"
-      value="{{old('fuelused')}}"
+      value="{{ $trip->fuelused }}"
    
     />
                    
@@ -124,12 +124,11 @@
     <input
       class="form-control"
       type="text"
-      value="" 
       id="avgconsumption"
       name="avgconsumption"
-      value="{{old('avgconsumption')}}"
+      value="{{  $trip->avgconsumption }}"
     />
-                   
+                  
 </div>
 
 
@@ -139,10 +138,9 @@
     <input
       class="form-control"
       type="text"
-      value="" 
       id="variance"
       name="variance"
-      value="{{old('variance')}}"
+      value="{{ $trip->fuelvarience }}"
   
     />
                    
@@ -154,10 +152,9 @@
     <input
       class="form-control"
       type="text"
-      value="" 
       id="addtionalfuel"
       name="addtionalfuel"
-      value="{{old('addtionalfuel')}}"
+      value="{{ $trip->addtionalfuel }}"
   
     />
                    
@@ -169,10 +166,9 @@
     <input
       class="form-control"
       type="text"
-      value="" 
       id="fuelintank"
       name="fuelintank"
-      value="{{old('fuelintank')}}"
+      value="{{  $trip->fuelintank }}"
   
     />
                    
@@ -186,7 +182,7 @@
       type="text"
       id="shortage"
       name="shortage"
-      value="{{old('shortage')}}"
+      value="{{ $trip->shortage }}"
   
     />
                    
@@ -200,7 +196,7 @@
       type="text"
       id="comment"
       name="comment"
-      value="{{old('comment')}}"
+      value="{{  $trip->comment }}"
   
     />
                    

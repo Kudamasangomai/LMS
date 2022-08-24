@@ -142,16 +142,16 @@ class TripController extends Controller
          $tripdetails->comment = $request->input('comment');;
          $tripdetails->shortage = $request->input('shortage');
 
-         if($tripdetails->openingkm > $tripdetails->closingkm){
-            //return redirect('/trip')->with('warning','not possible');
-            return redirect()->back()->with('error',"Driver updated");
-         }else{
-            dd($tripdetails);
-         }
+        //if($tripdetails->openingkm > $tripdetails->closingkm){
+        //return redirect('/trip')->with('warning','not possible');
+        //return redirect()->back()->with('error',"error ");
+        //}else{
+        //dd($tripdetails);
+        //}
 
        
-       // $tripdetails->save();
-        return redirect('/trip')->with('success','done');
+        $tripdetails->save();
+        return redirect('/trip')->with('success','Trip Details Saved');
     }
 
     /**

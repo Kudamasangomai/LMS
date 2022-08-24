@@ -145,7 +145,7 @@
 
             <li class="menu-item">
               <a href="/trip" class="menu-link">
-                <i class='menu-icon tf-icons bx bxs-user'></i>
+                <i class='menu-icon tf-icons bx bxs-truck'></i>
                 <div data-i18n="Analytics">Trip</div>
               </a>
             </li>
@@ -285,9 +285,9 @@
           <!-- Content wrapper -->
           <div class="content-wrapper">
             <!-- Content -->
-<div class="container-xxl flex-grow-1 container-p-y">
+<!-- <div class="container-xxl flex-grow-1 container-p-y"> -->
       @yield('content')
-</div>
+<!-- </div> -->
             
             <!-- / Content -->
 
