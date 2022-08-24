@@ -34,6 +34,11 @@
                                 aria-describedby="basic-icon-default-fullname2"
                               />
                             </div>
+                            @error('drivername')
+                            <p class="alert-danger">
+                              {{ $message }}
+                            </p>
+                            @enderror
                           </div>
                           <div class="mb-3">
                             <label class="form-label" for="basic-icon-default-company">Driver National ID</label>
@@ -49,10 +54,17 @@
                                 placeholder="ACME Inc."
                                 aria-label="ACME Inc."
                                 aria-describedby="basic-icon-default-company2"
+                                value="{{old('drivernationalid')}}"
                               />
                             </div>
+                            @error('drivernationalid')
+                            <p class="alert-danger">
+                              {{ $message }}
+                            </p>
+                            @enderror
                           </div>
                           <div class="mb-3">
+                           
                             <label class="form-label" for="basic-icon-default-email">Email</label>
                             <div class="input-group input-group-merge">
                               <span class="input-group-text"><i class="bx bx-envelope"></i></span>
@@ -64,10 +76,15 @@
                                 placeholder="john.doe"
                                 aria-label="john.doe"
                                 aria-describedby="basic-icon-default-email2"
+                                value="{{old('driveremail')}}"
                               />
                               <span id="basic-icon-default-email2" class="input-group-text">@example.com</span>
                             </div>
-                        
+                            @error('driveremail')
+                            <p class="alert-danger">
+                              {{ $message }}
+                            </p>
+                            @enderror
                           </div>
                          
                          
@@ -80,7 +97,7 @@
                   <div class="card mb-4">
                     <div class="card-header d-flex justify-content-between align-items-center">
                    
-                      <small class="text-muted float-end">Merged input group</small>
+                      <small class="text-muted float-end">pppp</small>
                     </div>
                     <div class="card-body">
                         <div class="mb-3">
@@ -99,6 +116,11 @@
                                 aria-describedby="basic-icon-default-phone2"
                               />
                             </div>
+                            @error('driverphonenumber')
+                            <p class="alert-danger">
+                              {{ $message }}
+                            </p>
+                            @enderror
                           </div>
                         <div class="mb-3">
                           <label class="form-label" for="basic-icon-default-fullname">Driver Licence No</label>
@@ -116,6 +138,11 @@
                               aria-describedby="basic-icon-default-fullname2"
                             />
                           </div>
+                          @error('driverlicenseno')
+                          <p class="alert-danger">
+                            {{ $message }}
+                          </p>
+                          @enderror
                         </div>
                         <div class="mb-3">
                           <label class="form-label" for="basic-icon-default-company">Company</label>

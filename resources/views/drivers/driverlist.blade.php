@@ -6,18 +6,17 @@
 
 
 <div class="card" >
-    <h5 class="card-header">list of drivers</h5>
-    <div class="table-responsive text-nowrap">
+    {{-- <h5 class="card-header">list of drivers</h5> --}}
+    {{-- <div class="table-responsive text-nowrap"> --}}
       <table class="table">
         <thead class="table-dark">
           <tr>
-            <th>driver No</th>
+          
             <th>Driver Name</th>
-            <th>id Number</th>
+            <th>Driver ID Number</th>
             <th>created at</th>
             <th>updated at</th>
-            <th>Phone number</th>
-        
+            <th>Phone number</th>        
             <th>Actions</th>
           </tr>
         </thead>
@@ -25,9 +24,7 @@
             @if(count($drivers) > 0)
             @foreach($drivers as $driver)
           <tr>
-            <td><i class="fab fa-angular fa-lg text-danger me-3">
-                </i> <strong>{{ $driver->id }} </strong>
-            </td>
+           
             <td>
                 {{ $driver->driver_name }} 
                 
@@ -36,14 +33,14 @@
                 {{ $driver->driver_id_no }}
             </td>
             <td>
-            {{ $driver->driver_phonenumber }}
+            {{ $driver->created_at}}
             </td>
 
             <td>
-                {{ $driver->created_at }}
+                {{ $driver->updated_at }}
                 </td>
                 <td>
-                    {{ $driver->updated_at }}
+                    {{ $driver->driver_phonenumber }}
                     </td>
          
               
@@ -85,7 +82,7 @@
       </table>
    
      
-    </div>
+    {{-- </div> --}}
     <br/>  
     {{ $drivers->links() }} 
     @else

@@ -65,29 +65,29 @@
                       <i class="bx bx-dots-vertical-rounded"></i>
                     </button>
                     <div class="dropdown-menu">
-                      @if ( $consignment->submitted == 'Submitted' 
-                      || $consignment->submitted == 'Pending' && Auth::user()->roles == 3 )
-                       <a class="dropdown-item" href="/consignments/{{$consignment->id}}"
-                        ><i class="bx bx-edit-alt me-1"></i> Received</a
-                      >
 
+                      @if ( $consignment->submitted == 'Submitted' || $consignment->submitted == 'Cancelled' && Auth::user()->roles == 3 )
+                       <a class="dropdown-item" href="/consignments/{{$consignment->id}}/consignmentrecieved"
+                        ><i class="bx bx-edit-alt me-1"></i> Received</a>
+                    
                       <a class="dropdown-item" href="/consignments/{{$consignment->id}}"
-                        ><i class="bx bx-edit-alt me-1"></i> View</a
-                      >
+                        ><i class="bx bx-edit-alt me-1"></i> View</a>
                       @else
                  
+                          @if(Auth::user()->roles < 4 )
 
+                          @else
                       <a class="dropdown-item" href="/consignments/{{$consignment->id}}"
-                        ><i class="bx bx-edit-alt me-1"></i> View</a
-                      >
+                        ><i class="bx bx-edit-alt me-1"></i> View</a>
                        
                       <a class="dropdown-item" href="/consignments/{{$consignment->id}}/edit"
-                        ><i class="bx bx-edit-alt me-1"></i> Edit</a
-                      >
+                        ><i class="bx bx-edit-alt me-1"></i> Edit</a>
+
                       <a class="dropdown-item" href="/consignments/{{$consignment->id}}/close"
                       ><i class="bx bx-trash me-1"></i> Close trip </a>
                       <a class="dropdown-item" href="javascript:void(0);"
                         ><i class="bx bx-trash me-1"></i> Delete</a>
+                        @endif
                         @endif
                     </div>
                   </div>

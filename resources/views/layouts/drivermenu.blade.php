@@ -1,7 +1,7 @@
 <div class="container-xxl flex-grow-1 container-p-y">
   @if($title)
   <h4 class="fw-bold py-3">
-    <span class="text-muted fw-light">{{ $title }} </span>/Kuda 
+    {{ $title }} 
    
   </h4>
   @endif

@@ -34,6 +34,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 /**  start Consignments Routes  **/
 Route::get('/consignments/closedConsigments/',[App\Http\Controllers\ConsignmentController::class, 'closedConsigments']);
 Route::get('/consignments/{id}/consignmentrecieved/',[App\Http\Controllers\ConsignmentController::class, 'consignmentrecieved']);
+Route::put('/consignments/{id}/accrecievedconsignment/',[App\Http\Controllers\ConsignmentController::class, 'accrecievedconsignment']);
 Route::get('/consignments/{id}/close/',[App\Http\Controllers\ConsignmentController::class, 'close']);
 Route::put('/consignments/{id}/closecon/',[App\Http\Controllers\ConsignmentController::class, 'closecon']);
 Route::resource('/consignments',ConsignmentController::class);

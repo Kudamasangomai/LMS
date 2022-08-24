@@ -12,7 +12,7 @@
     <meta name="description" content="" />
 
     <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="../assets/img/favicon/favicon.ico" />
+    {{-- <link rel="icon" type="image/x-icon" href="../assets/img/favicon/favicon.ico" /> --}}
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -30,19 +30,17 @@
     <link rel="stylesheet" href="{{ asset('assets/css/demo.css') }}" />
 
     <!-- Vendors CSS -->
-    <link rel="stylesheet" href="{{ asset('assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css') }}" />
+    {{-- <link rel="stylesheet" href="{{ asset('assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css') }}" /> --}}
 
 
-    <link rel="stylesheet" href="{{ asset('assets/vendor/libs/apex-charts/apex-charts.css ') }}" />
+    {{-- <link rel="stylesheet" href="{{ asset('assets/vendor/libs/apex-charts/apex-charts.css ') }}" /> --}}
 
     <!-- Page CSS -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <!-- Helpers -->
-    <script src="../assets/vendor/js/helpers.js"></script>
+    {{-- <script src="../assets/vendor/js/helpers.js"></script> --}}
 
-    <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
-    <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
-    <script src="../assets/js/config.js"></script>
+   {{-- <script src="../assets/js/config.js"></script> --}}
 </head>
 <body>
     <!-- Layout wrapper -->
@@ -273,6 +271,9 @@
                         <span class="align-middle">Log Out</span>
                       </a>
                     </li>
+                    <li>
+             
+                    </li>
                   </ul>
                 </li>
                 <!--/ User -->
@@ -306,7 +307,7 @@
              
             
                   <a
-                    href="https://github.com/themeselection/sneat-html-admin-template-free/issues"
+                    href=""
                     target="_blank"
                     class="footer-link me-4"
                     >Support</a

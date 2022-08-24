@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddColumnsToDriversTable extends Migration
+class AddAddressToDriverTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,9 +14,7 @@ class AddColumnsToDriversTable extends Migration
     public function up()
     {
         Schema::table('drivers', function (Blueprint $table) {
-            $table->string('driver_email')->unique()->change();
-            $table->string('driver_license_no')->unique()->change();
-            
+            $table->string('driver_res_place');
         });
     }
 
@@ -27,8 +25,8 @@ class AddColumnsToDriversTable extends Migration
      */
     public function down()
     {
-        Schema::table('drivers', function (Blueprint $table) {
-            //
+        Schema::table('driver', function (Blueprint $table) {
+            $table->dropColumn('driver_res_place');
         });
     }
 }

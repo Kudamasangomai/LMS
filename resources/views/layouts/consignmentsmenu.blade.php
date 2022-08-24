@@ -6,19 +6,19 @@
   @endif
 
 
-<div class="col-md-12">
-  <nav class="navbar navbar-example navbar-expand-lg bg-dark">
-    <div class="container-fluid">
-     
 
-      <div class="collapse navbar-collapse" id="navbar-ex-4">
-        <div class="navbar-nav me-auto">
+  
+
           <ul class="nav nav-pills flex-column flex-md-row mb-3">
      
             <li class="nav-item">
            
-              <a class="nav-link" href="/consignments/"><i class="menu-icon tf-icons bx bxs-package"></i> Consignments</a>
+              <a class="nav-link active" href="/consignments/"><i class="menu-icon tf-icons bx bxs-package"></i> Consignments</a>
+              
             </li>
+            @if(Auth::user()->roles < 4 )
+
+            @else
             <li class="nav-item">
               <a class="nav-link" href="/consignments/closedConsigments">
                 <i class='bx bx-highlight'></i> Closed Consigment
@@ -35,10 +35,13 @@
             </li>
       
             @endif
+            @endif
       
       
           </ul>
-        </div>
+
+          
+       
         {!! Form::open([
           'class'=>'form-inline',
           'method' => 'GET' ,
@@ -51,8 +54,6 @@
             <input type="text" name="search" class="form-control" placeholder="Search..." />
           </div>
           {!! Form::close() !!}
-      </div>
-    </div>
-  </nav>
+          <br>
     
-</div>
+  

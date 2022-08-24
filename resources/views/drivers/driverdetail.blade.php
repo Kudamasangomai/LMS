@@ -9,7 +9,11 @@
 
     <div class="row">
       <div class="col-md-12">       
-       
+        {!! Form::open([
+          'method' => 'PUT' ,
+          'action' => ['App\Http\Controllers\DriverController@update',$driver->id ],
+          'enctype' => 'multipart/form-data']) 
+          !!}
         <div class="card mb-4">
           <h5 class="card-header">{{ $driver->driver_name}} Profile Details</h5>
           <!-- Account -->
@@ -54,14 +58,28 @@
                     class="form-control"
                     type="text"
                     id="firstName"
-                    name="firstName"
+                    name="drivername"
                     value="{{ $driver->driver_name}}" 
                     autofocus
                   />
+                  @error('driverid')
+                  <p class="alert-danger">
+                    {{ $message }}
+                  </p>
+                  @enderror
                 </div>
                 <div class="mb-3 col-md-6">
-                  <label for="lastName" class="form-label">Last Name</label>
-                  <input class="form-control" type="text" name="lastName" id="lastName" value="Doe" />
+                  <label for="state" class="form-label">Driver ID </label>
+                  <input class="form-control" type="text"
+                   id="state" 
+                   name="driverid"
+                   value="{{ $driver->driver_id_no }}"
+                    placeholder="California" />
+                    @error('driverid')
+                    <p class="alert-danger">
+                      {{ $message }}
+                    </p>
+                    @enderror
                 </div>
                 <div class="mb-3 col-md-6">
                   <label for="email" class="form-label">E-mail</label>
@@ -69,20 +87,30 @@
                     class="form-control"
                     type="text"
                     id="email"
-                    name="email"
+                    name="driveremail"
                     value="{{ $driver->driver_email }}"
-                    placeholder="john.doe@example.com"
+                   
                   />
+                  @error('driveremail')
+                  <p class="alert-danger">
+                    {{ $message }}
+                  </p>
+                  @enderror
                 </div>
                 <div class="mb-3 col-md-6">
-                  <label for="organization" class="form-label">Organization</label>
+                  <label for="organization" class="form-label">License</label>
                   <input
                     type="text"
                     class="form-control"
                     id="organization"
-                    name="organization"
-                    value="Blustar Logistics"
+                    name="driverlicenseno"
+                    value="{{ $driver->driver_license_no }}"
                   />
+                  @error('driverlicenseno')
+                  <p class="alert-danger">
+                    {{ $message }}
+                  </p>
+                  @enderror
                 </div>
                 <div class="mb-3 col-md-6">
                   <label class="form-label" for="phoneNumber">Phone Number</label>
@@ -91,32 +119,33 @@
                     <input
                       type="text"
                       id="phoneNumber"
-                      name="phoneNumber"
+                      name="driverphonenumber"
                       class="form-control"
                       value="{{ $driver->driver_phonenumber }}"
                  
                     />
                   </div>
+                  @error('driverphonenumber')
+                  <p class="alert-danger">
+                    {{ $message }}
+                  </p>
+                  @enderror
                 </div>
                 <div class="mb-3 col-md-6">
                   <label for="address" class="form-label">Address</label>
-                  <input type="text" class="form-control" id="address" name="address" placeholder="Address" />
+                  <input type="text" class="form-control" 
+                  id="address" 
+                  name="address"
+                  value="{{ $driver->driver_res_place }}"
+                   placeholder="Address" />
+                   @error('address')
+                   <p class="alert-danger">
+                     {{ $message }}
+                   </p>
+                   @enderror
                 </div>
-                <div class="mb-3 col-md-6">
-                  <label for="state" class="form-label">Driver ID </label>
-                  <input class="form-control" type="text" id="state" name="state" placeholder="California" />
-                </div>
-                <div class="mb-3 col-md-6">
-                  <label for="zipCode" class="form-label">Zip Code</label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="zipCode"
-                    name="zipCode"
-                    value="{{ $driver->driver_id_no }}"
-                    maxlength="10"
-                  />
-                </div>
+               
+              
                 
                 
                 
@@ -153,6 +182,7 @@
               </div>
               <button type="submit" class="btn btn-danger deactivate-account">Deactivate Account</button>
             </form>
+            {!! Form::close() !!}
           </div>
         </div>
       </div>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\consignment;
 use App\Models\driver;
 use App\Models\fleet;
+use DateTime;
 use Illuminate\Http\Request;
 
 class ConsignmentController extends Controller
@@ -23,9 +24,8 @@ class ConsignmentController extends Controller
     {
         $data = array(
             'title'=>  'Consignments',
-           // 'consignments' => consignment::all(),
            'consignments' => consignment::orderBy('dateofdispatch','desc')->paginate(10),
-        );      
+        );         
         return view('pages.consignments')->with($data);
     }
 
@@ -209,26 +209,36 @@ class ConsignmentController extends Controller
     return view('pages.consignments')->with($data);
     }
      
+    public function consignmentrecieved( $id)
+    {
+        $data = array(
+            'title' => 'Consignment Detail',
+            'consignment' => consignment::find($id),
+        );   
+    return view('pages.confirmconsignmentrecieved')->with($data);
 
-/**
-  public function consignmentrecieved(Request $request, $id)
+    }
+
+  public function accrecievedconsignment(Request $request, $id)
   {
     $this->validate($request,[
          
-        'accrecieved ' => 'required',
+        // 'accrecieved ' => 'required',
      
        
     ]);
 
+    $dater = new DateTime();
     $consignment = consignment::find($id);
     $consignment->accrecieved = 1;
     $consignment->accuserclosedby = auth()->user()->id;
-
+    $consignment->dateaccountsrecieved = $dater;
+    
     $consignment->save();
-    return redirect('/consignments/closedConsigments')->with('success','Consignment Recieved');
+   return redirect('/consignments/closedConsigments')->with('success','Consignment Recieved');
 
   }   
-  **/
+  
     /**
      * Remove the specified resource from storage.
      *

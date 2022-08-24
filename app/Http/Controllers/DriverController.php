@@ -20,7 +20,7 @@ class DriverController extends Controller
     {
         $data= array(
             'title'=> 'Drivers',
-            'drivers'=> driver::orderby('driver_name','asc')->paginate(20)
+            'drivers'=> driver::orderby('driver_name','asc')->paginate(5)
         );
         //dd($data);
         return view('drivers.driverlist')->with($data);
@@ -51,10 +51,10 @@ class DriverController extends Controller
         $this->validate($request,[
           
              'drivername' => 'required',
-             'driveremail' => 'required',
-             'driverlicenseno' => 'required',
-             'driverphonenumber'=>'required',
-             'drivernationalid'  =>'required',
+             'driveremail' => 'required|unique:drivers,driver_email',
+             'driverlicenseno' => 'required|unique:drivers,driver_license_no',
+             'driverphonenumber'=>'required|unique :drivers,driver_phonenumber|numeric',
+             'drivernationalid'  =>'required|unique:driver,driver_id_no',
              
          ]);
 
@@ -113,17 +113,22 @@ class DriverController extends Controller
     public function update(Request $request, $id)
     {
             $this->validate($request,[
-                'drivername'=>'required',
-                'driverid'=>'required',
-                'driverphonenumber'=>'required',
+           
+                'address'=>'required',
+                'driveremail' => 'required',
+                'driverlicenseno' => 'required',
+                'driverphonenumber'=>'required|numeric',
+                // 'drivernationalid'  =>'required',
             ]);      
            
             $driver = driver::find($id);
             $driver->driver_name = $request->input('drivername');
             $driver->driver_id_no = $request->input('driverid');
+            $driver->driver_license_no = $request->input('driverlicenseno');
             $driver->driver_phonenumber = $request->input('driverphonenumber');
+            $driver->driver_res_place = $request->input('address');
             $driver->save();
-            return redirect()->back()->with('success',"Driver updated");
+            return redirect()->back()->with('success', " $driver->driver_name Profile updated");
    
  
     }
