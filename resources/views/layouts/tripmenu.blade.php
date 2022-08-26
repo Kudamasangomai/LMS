@@ -6,18 +6,12 @@
     @endif
   
   
-  <div class="col-md-12">
-    <nav class="navbar navbar-example navbar-expand-lg bg-dark">
-      <div class="container-fluid">
-       
   
-        <div class="collapse navbar-collapse" id="navbar-ex-4">
-          <div class="navbar-nav me-auto">
             <ul class="nav nav-pills flex-column flex-md-row mb-3">
        
               <li class="nav-item">
              
-                <a class="nav-link" href="/trip"> <i class='menu-icon tf-icons bx bxs-truck'></i>Trips /</a>
+                <a class="nav-link active" href="/trip"> <i class='menu-icon tf-icons bx bxs-truck'></i>Trips /</a>
               </li>
             
             
@@ -34,16 +28,7 @@
         
         
             </ul>
-          </div>
+          
   
-          <form class="d-flex">
-            <div class="input-group">
-              <span class="input-group-text"><i class="tf-icons bx bx-search"></i></span>
-              <input type="text" class="form-control" placeholder="Search..." />
-            </div>
-          </form>
-        </div>
-      </div>
-    </nav>
       
-  </div>
+     

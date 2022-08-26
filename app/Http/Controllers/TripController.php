@@ -5,9 +5,14 @@ use App\Models\driver;
 use App\Models\fleet;
 use App\Models\tripfuel;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 class TripController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -26,7 +31,7 @@ class TripController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Show the form for creating a new Trip.
      *
      * @return \Illuminate\Http\Response
      */
@@ -42,7 +47,7 @@ class TripController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created trip in storage/database.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -88,7 +93,16 @@ class TripController extends Controller
      */
     public function show($id)
     {
-        //
+        $trip = tripfuel::find($id);
+
+        $data = array(
+           'title' => 'Trip Report',
+           'trip' => $trip,
+           'currentTime' => Carbon::now(),
+          'tripdays' => $trip->created_at->diffInDays($trip->updated_at, false)
+                    
+    );
+       return view('trip.tripdetail')->with($data);
     }
 
     /**

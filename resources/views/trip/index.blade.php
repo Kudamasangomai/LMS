@@ -3,7 +3,13 @@
 @include('layouts.tripmenu')
 @include('inc.messages')
 
-
+<form class="d-flex">
+  <div class="input-group">
+    <span class="input-group-text"><i class="tf-icons bx bx-search"></i></span>
+    <input type="text" class="form-control" placeholder="Search..." />
+  </div>
+</form>
+<br>
 <div class="card" >
     <h5 class="card-header">List of Trip</h5>
     <div class="table-responsive text-nowrap">
