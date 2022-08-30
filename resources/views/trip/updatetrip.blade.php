@@ -63,35 +63,10 @@
                                
         </div>
 
-        <div class="mb-3 col-md-6">
-          <label for="html5-datetime-local-input" class="col-md-6 col-form-label">Closing odo</label>
-          
-            <input
-              class="form-control"
-              type="text"
-              value="{{ $trip->closingkm }}" 
-              id="closingodo"
-              name="closingkm"
-          
-            />
-                           
-    </div>
+    
 
 
-    <div class="mb-3 col-md-6">
-      <label for="html5-datetime-local-input" class="col-md-6 col-form-label">Distance Travelled (Km)</label>
-      
-        <input
-          class="form-control"
-          type="text"
-          value="{{ $trip->distance }}"
-          id="distance"
-          name="distance"
-          
-       
-        />
-                       
-</div>
+    
 <div class="mb-3 col-md-6">
   <label for="html5-datetime-local-input" class="col-md-6 col-form-label">Actual Refuelling ()</label>
   
@@ -105,34 +80,11 @@
     />
                    
 </div>
-<div class="mb-3 col-md-6">
-  <label for="html5-datetime-local-input" class="col-md-6 col-form-label">Fuel Used /Dash</label>
-  
-    <input
-      class="form-control"
-      type="text"
-      id="fuelused"
-      name="fuelused"
-      value="{{ $trip->fuelused }}"
-   
-    />
-                   
-</div>
-<div class="mb-3 col-md-6">
-  <label for="html5-datetime-local-input" class="col-md-6 col-form-label">Average Consumption/Dash</label>
-  
-    <input
-      class="form-control"
-      type="text"
-      id="avgconsumption"
-      name="avgconsumption"
-      value="{{  $trip->avgconsumption }}"
-    />
-                  
-</div>
 
 
-<div class="mb-3 col-md-6">
+
+
+{{-- <div class="mb-3 col-md-6">
   <label for="html5-datetime-local-input" class="col-md-6 col-form-label">Variance /fuel left</label>
   
     <input
@@ -144,63 +96,14 @@
   
     />
                    
-</div>
+</div> --}}
 
-<div class="mb-3 col-md-6">
-  <label for="html5-datetime-local-input" class="col-md-6 col-form-label">Additional Fuel</label>
-  
-    <input
-      class="form-control"
-      type="text"
-      id="addtionalfuel"
-      name="addtionalfuel"
-      value="{{ $trip->addtionalfuel }}"
-  
-    />
-                   
-</div>
 
-<div class="mb-3 col-md-6">
-  <label for="html5-datetime-local-input" class="col-md-6 col-form-label">Total In Tank</label>
-  
-    <input
-      class="form-control"
-      type="text"
-      id="fuelintank"
-      name="fuelintank"
-      value="{{  $trip->fuelintank }}"
-  
-    />
-                   
-</div>
 
-<div class="mb-3 col-md-6">
-  <label for="html5-datetime-local-input" class="col-md-6 col-form-label">Shortage</label>
-  
-    <input
-      class="form-control"
-      type="text"
-      id="shortage"
-      name="shortage"
-      value="{{ $trip->shortage }}"
-  
-    />
-                   
-</div>
 
-<div class="mb-3 col-md-6">
-  <label for="html5-datetime-local-input" class="col-md-6 col-form-label">Comment</label>
-  
-    <input
-      class="form-control"
-      type="text"
-      id="comment"
-      name="comment"
-      value="{{  $trip->comment }}"
-  
-    />
-                   
-</div>
+
+
+
 
 
 
@@ -250,7 +153,7 @@
 
              <div class="mt-2">
               <button type="submit" class="btn btn-primary me-2">Update</button>
-              <button type="reset" class="btn btn-outline-secondary">Cancel</button>
+              <button type="reset" class="btn btn-outline-secondary"><a href="/trip/">Cancel</a> </button>
             </div>
         {!! Form::close() !!}
     </div>

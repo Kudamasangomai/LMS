@@ -19,8 +19,8 @@ class FleetController extends Controller
     public function index()
     {
         $data = array(
-            'title'=>'Trucks',
-            'fleets'=>fleet::orderby('fleetno','asc')->paginate(20),
+            'title' => 'Trucks',
+            'fleets' => fleet::orderby('fleetno', 'asc')->paginate(20),
         );
         return view('fleet.fleetlist')->with($data);
     }

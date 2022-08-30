@@ -1,6 +1,6 @@
 @extends( 'layouts.base')
 @section('content')
-@include('layouts.drivermenu')
+@include('layouts.usersmenu')
 @include('inc.messages')
 
 
@@ -11,11 +11,11 @@
       <div class="col-md-12">       
         {!! Form::open([
           'method' => 'PUT' ,
-          'action' => ['App\Http\Controllers\DriverController@update',$driver->id ],
+          'action' => ['App\Http\Controllers\UserController@update',$user->id ],
           'enctype' => 'multipart/form-data']) 
           !!}
         <div class="card mb-4">
-          <h5 class="card-header">{{ $driver->driver_name}} Profile Details</h5>
+          <h5 class="card-header">{{ $user->name}} Profile Details</h5>
           <!-- Account -->
           <div class="card-body">
             <div class="d-flex align-items-start align-items-sm-center gap-4">
@@ -50,7 +50,7 @@
           </div>
           <hr class="my-0" />
           <div class="card-body">
-            <form id="formAccountSettings" method="POST" onsubmit="return false">
+            
               <div class="row">
                 <div class="mb-3 col-md-6">
                   <label for="firstName" class="form-label">First Name</label>
@@ -58,24 +58,24 @@
                     class="form-control"
                     type="text"
                     id="firstName"
-                    name="drivername"
-                    value="{{ $driver->driver_name}}" 
+                    name="name"
+                    value="{{ $user->name}}" 
                     autofocus
                   />
-                  @error('driverid')
+                  @error('name')
                   <p class="alert-danger">
                     {{ $message }}
                   </p>
                   @enderror
                 </div>
                 <div class="mb-3 col-md-6">
-                  <label for="state" class="form-label">Driver ID </label>
+                  <label for="state" class="form-label">User Role </label>
                   <input class="form-control" type="text"
                    id="state" 
-                   name="driverid"
-                   value="{{ $driver->driver_id_no }}"
+                   name="role"
+                   value="{{ $user->roles }}"
                     placeholder="California" />
-                    @error('driverid')
+                    @error('role')
                     <p class="alert-danger">
                       {{ $message }}
                     </p>
@@ -87,63 +87,18 @@
                     class="form-control"
                     type="text"
                     id="email"
-                    name="driveremail"
-                    value="{{ $driver->driver_email }}"
+                    name="email"
+                    value="{{ $user->email }}"
                    
                   />
-                  @error('driveremail')
+                  @error('email')
                   <p class="alert-danger">
                     {{ $message }}
                   </p>
                   @enderror
                 </div>
-                <div class="mb-3 col-md-6">
-                  <label for="organization" class="form-label">License</label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="organization"
-                    name="driverlicenseno"
-                    value="{{ $driver->driver_license_no }}"
-                  />
-                  @error('driverlicenseno')
-                  <p class="alert-danger">
-                    {{ $message }}
-                  </p>
-                  @enderror
-                </div>
-                <div class="mb-3 col-md-6">
-                  <label class="form-label" for="phoneNumber">Phone Number</label>
-                  <div class="input-group input-group-merge">
-                    <span class="input-group-text">Zim (+263)</span>
-                    <input
-                      type="text"
-                      id="phoneNumber"
-                      name="driverphonenumber"
-                      class="form-control"
-                      value="{{ $driver->driver_phonenumber }}"
-                 
-                    />
-                  </div>
-                  @error('driverphonenumber')
-                  <p class="alert-danger">
-                    {{ $message }}
-                  </p>
-                  @enderror
-                </div>
-                <div class="mb-3 col-md-6">
-                  <label for="address" class="form-label">Address</label>
-                  <input type="text" class="form-control" 
-                  id="address" 
-                  name="address"
-                  value="{{ $driver->driver_res_place }}"
-                   placeholder="Address" />
-                   @error('address')
-                   <p class="alert-danger">
-                     {{ $message }}
-                   </p>
-                   @enderror
-                </div>
+             
+           
                
               
                 
@@ -182,7 +137,7 @@
               </div>
               <button type="submit" class="btn btn-danger deactivate-account">
 
-                <a href="/drivers/{{$driver->id}}/delete" style="color: white">
+                <a href="/users/{{$user->id}}/delete" style="color: white">
                 Delete Account
               </a>
               </button>

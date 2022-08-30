@@ -21,7 +21,8 @@ class UserController extends Controller
 
         $data = array
         (
-            'users' => User::all(),
+           
+            'users' => User::orderBy('roles','desc')->paginate(10),
             'title'=> 'Users',
         );
        
@@ -37,7 +38,8 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        $title= 'Create User';
+        return view('user.createuser',compact('title'));
     }
 
     /**
@@ -48,7 +50,23 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request,[
+           
+           
+            'name' => 'required',
+            'role' => 'required',
+            'email'=>'required',
+            'password'=>'required'
+     
+        ]);  
+       $user = new User();
+       $user->name = $request->input('name');
+       $user->roles = $request->input('role');
+       $user->email = $request->input('email');
+       $user->password = $request->input('password');
+       //dd($user);
+       $user->save();
+       return redirect()->route('users.show',[ $user->id ])->with('success','User Successfully Created');
     }
 
     /**
@@ -59,7 +77,9 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        //
+        $title = 'User Detail';
+        $user = User::find($id);
+        return view('user.userdetail',compact('user','title'));
     }
 
     /**
@@ -82,7 +102,22 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request,[
+           
+           
+            'name' => 'required',
+            'role' => 'required',
+            'email'=>'required',
+     
+        ]);      
+       
+        $user = User::find($id);
+        $user->name = $request->input('name');
+        $user->roles = $request->input('role');
+        $user->email = $request->input('email');
+      
+        $user->save();
+        return redirect()->back()->with('success', "$user->name Profile successfully updated");
     }
 
     /**

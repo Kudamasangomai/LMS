@@ -7,6 +7,7 @@ use App\Models\tripfuel;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 
+
 class TripController extends Controller
 {
     public function __construct()
@@ -78,9 +79,10 @@ class TripController extends Controller
         $tripdetails->fuelintank = 0;
         $tripdetails->comment = 'In Transit';
         $tripdetails->shortage = 0;
-      // dd($tripdetails);
+        $tripdetails->tripstatus = 'open';
+        //dd($tripdetails);
         $tripdetails->save();
-        return redirect('/trip')->with('success','Trip Created');
+        return redirect('/trip')->with('success','New Trip Created');
     
 
     }
@@ -102,8 +104,11 @@ class TripController extends Controller
           'tripdays' => $trip->created_at->diffInDays($trip->updated_at, false)
                     
     );
+        //$pdf = PDF::loadView('myPDF', $data);
        return view('trip.tripdetail')->with($data);
     }
+
+    
 
     /**
      * Show the form for editing the specified resource.
@@ -145,6 +150,36 @@ class TripController extends Controller
          $tripdetails->driver_id = $request->input('drivername');
          $tripdetails->fleet_id = $request->input('fleetno');
          $tripdetails->openingkm = $request->input('openingkm');
+         $tripdetails->fuelbeforetrip = $request->input('fuelbeforetrip');       
+         $tripdetails->save();
+         return redirect('/trip')->with('success','Trip Details Saved');
+    }
+
+
+    public function closetrip(Request $request, $id){
+  
+    $data = array(
+        'title' => 'Close trip',
+        'trip' =>   tripfuel::find($id),
+        'drivers'=> driver::all(),
+        'fleet'=> fleet::all(),
+    );   
+    return view('trip.closetrip')->with($data);
+     
+    }
+    public function tripend(Request $request, $id)
+    {
+        $this->validate($request,[
+     
+         
+         
+             'closingkm' => 'required|max:7|gt:openingkm',
+             'fuelbeforetrip'=>'required|max:4',
+             
+         ]);
+         
+ 
+         $tripdetails = tripfuel::find($id);
          $tripdetails->fuelbeforetrip = $request->input('fuelbeforetrip');
          $tripdetails->closingkm = $request->input('closingkm');;
          $tripdetails->distance = $request->input('distance');;
@@ -155,19 +190,27 @@ class TripController extends Controller
          $tripdetails->fuelintank = $request->input('fuelintank');;
          $tripdetails->comment = $request->input('comment');;
          $tripdetails->shortage = $request->input('shortage');
+         $tripdetails->closed_at = Carbon::now();
+         $tripdetails->tripstatus = 'closed';
 
-        //if($tripdetails->openingkm > $tripdetails->closingkm){
-        //return redirect('/trip')->with('warning','not possible');
-        //return redirect()->back()->with('error',"error ");
-        //}else{
+        // if($tripdetails->closingkm == 0 ){
+        // return redirect('/trip')->with('warning','not possible');
+        // return redirect()->back()->with('error',"error ");
+        // //}else{
+        // dd($tripdetails);
+        //$tripdetails->save();
+        // }
+
         //dd($tripdetails);
-        //}
-
-       
+        
         $tripdetails->save();
-        return redirect('/trip')->with('success','Trip Details Saved');
+        return redirect()->route('trip.show',[ $tripdetails->id ])->with('success','Trip Successfully Closed');
+    
     }
 
+
+
+    
     /**
      * Remove the specified resource from storage.
      *

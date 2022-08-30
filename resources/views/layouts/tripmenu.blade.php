@@ -20,7 +20,7 @@
                
               <li class="nav-item">
                 <a class="nav-link" href="/trip/create">
-                  <i class='bx bx-highlight'></i> Add Trip
+                  <i class='bx bx-highlight'></i> Create Trip
                   </a>
               </li>
         

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddAddressToDriverTable extends Migration
+class AddTripenddayToTripfuelsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class AddAddressToDriverTable extends Migration
      */
     public function up()
     {
-        Schema::table('drivers', function (Blueprint $table) {
-            $table->string('driver_res_place');
+        Schema::table('tripfuels', function (Blueprint $table) {
+            $table->timestamp('closed_at')->useCurrent();
         });
     }
 
@@ -25,8 +25,8 @@ class AddAddressToDriverTable extends Migration
      */
     public function down()
     {
-        Schema::table('drivers', function (Blueprint $table) {
-            $table->dropColumn('driver_res_place');
+        Schema::table('tripfuels', function (Blueprint $table) {
+            $table->dropColumn('closed_at');
         });
     }
 }

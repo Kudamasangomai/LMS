@@ -16,10 +16,12 @@
       <table class="table">
         <thead class="table-dark">
           <tr>
+            <th>Trip Id </th>
             <th>Date </th>
             <th>Fleet</th>
             <th>Driver</th>
             <th>Route</th>
+            <th>Trip Status</th>
             <th>Openning Km</th>
             <th>Closing Km</th>
             <th>Distance  Km</th>
@@ -41,8 +43,11 @@
             @if(count($trip) > 0)
             @foreach($trip as $tripinfo)
           <tr>
+            <td><i class="fab fa-angular fa-lg text-danger me-3">
+            </i>  {{ $tripinfo->id }} 
+            </td>
                 <td><i class="fab fa-angular fa-lg text-danger me-3">
-                </i>  {{ $tripinfo->created_at }} 
+                </i>  {{ $tripinfo->created_at->format('d/M/Y h:m') }} 
                 </td>
                  <td><i class="fab fa-angular fa-lg text-danger me-3">
                 </i>  {{ $tripinfo->tripfleet->fleetno }}  
@@ -53,6 +58,9 @@
                 <td><i class="fab fa-angular fa-lg text-danger me-3">
                     </i>  route   
                 </td>
+                <td><i class="fab fa-angular fa-lg text-danger me-3">
+                </i>  {{ $tripinfo->tripstatus }}
+            </td>
                 <td><i class="fab fa-angular fa-lg text-danger me-3">
                 </i>  {{ $tripinfo->openingkm }}  
                 </td>
@@ -113,6 +121,10 @@
                    
                   <a class="dropdown-item" href="/trip/{{$tripinfo->id}}/edit"
                     ><i class="bx bx-edit-alt me-1"></i> Edit</a
+                  >
+
+                  <a class="dropdown-item" href="/trip/{{$tripinfo->id}}/closetrip"
+                    ><i class="bx bx-edit-alt me-1"></i> Close Trip</a
                   >
                
                   <a class="dropdown-item" href="javascript:void(0);"

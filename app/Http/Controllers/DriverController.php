@@ -33,11 +33,9 @@ class DriverController extends Controller
      */
     public function create()
     {
-        $data = array(
-            'title'=>'Create Driver',
-        
-        );
-        return view('drivers.createdriver')->with($data);
+ 
+        $title= 'Create Driver';
+        return view('drivers.createdriver',compact('title'));
     }
 
     /**
@@ -54,7 +52,7 @@ class DriverController extends Controller
              'driveremail' => 'required|unique:drivers,driver_email',
              'driverlicenseno' => 'required|unique:drivers,driver_license_no',
              'driverphonenumber'=>'required|unique :drivers,driver_phonenumber|numeric',
-             'drivernationalid'  =>'required|unique:driver,driver_id_no',
+             'drivernationalid'  =>'required|unique:drivers,driver_id_no',
              
          ]);
 
@@ -62,8 +60,9 @@ class DriverController extends Controller
          $driver->driver_name = $request->input('drivername');
          $driver->driver_email = $request->input('driveremail');
          $driver->driver_license_no = $request->input('driverlicenseno');
-        $driver->driver_phonenumber = $request->input('driverphonenumber');
-        $driver->driver_id_no = $request->input('drivernationalid');
+         $driver->driver_phonenumber = $request->input('driverphonenumber');
+         $driver->driver_id_no = $request->input('drivernationalid');
+         $driver->driver_res_place = 'Zimbabwe';
         $driver->save();
         return redirect('/drivers')->with('success','Driver Succefuly Created');
           
@@ -141,6 +140,16 @@ class DriverController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $driver = driver::find($id);
+        $driver->delete();
+        return redirect('/drivers')->with('success',"Driver Succesfully Deleted");
+  
+    }
+    public function delete($id)
+    {
+        $driver = driver::find($id);
+        $title = 'Delete Driver';
+        return view('drivers.confirmdelete',compact('driver','title'));
+  
     }
 }
