@@ -25,7 +25,7 @@
                 </a>
             </li>
           
-              @if (Auth::user()->roles  >= 5)
+              @if (Auth::user()->roles  >= 4)
                 
              
             <li class="nav-item">
@@ -39,21 +39,5 @@
       
       
           </ul>
-
-          
-       
-        {!! Form::open([
-          'class'=>'form-inline',
-          'method' => 'GET' ,
-          'action' => 'App\Http\Controllers\ConsignmentController@search' ,
-          'enctype' => 'multipart/form-data'])
-        !!}
-     
-          <div class="input-group">
-            <span class="input-group-text"><i class="tf-icons bx bx-search"></i></span>
-            <input type="text" name="search" class="form-control" placeholder="Search..." />
-          </div>
-          {!! Form::close() !!}
-          <br>
     
   

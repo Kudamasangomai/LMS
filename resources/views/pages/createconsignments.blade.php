@@ -52,7 +52,12 @@
 
           <div class="mb-3 col-md-6">
             <label for="defaultSelect" class="form-label">Driver Name</label>
-            <select name="drivername" id="defaultSelect" class="form-select">
+            <select 
+            name="drivername" 
+            id="defaultSelect" 
+            value="{{ old('drivername') }}"
+    
+            class="form-select">
               @foreach($drivers as $drivers)
               <option value="{{ $drivers->id }}">{{ $drivers->driver_name }}</option>
           @endforeach
@@ -91,6 +96,7 @@
               id="exampleDataList"
               placeholder="Type to search..."
               name="contract"
+              value="{{ old('contract') }}"
             />
             <datalist id="contractlistOptions">
               <option value="ZSS"></option>
@@ -115,6 +121,7 @@
               id="exampleDataList"
               placeholder="Type to search..."
               name="loadingpoint"
+              value="{{ old('loadingpoint') }}"
             />
             <datalist id="loadingpointlistOptions">
               <option value="South Africa"></option>
@@ -136,6 +143,7 @@
               id="exampleDataList"
               placeholder="Type to search..."
               name="offloadingpoint"
+              value="{{ old('offloadingpoint') }}"
             />
             <datalist id="offloadingpointlistOptions">
               <option value="Aspindale Harare"></option>
@@ -156,6 +164,7 @@
               type="text"
               id="firstName"
               name="comment"
+              value="{{ old('comment') }}"
              placeholder="comment"
               autofocus
             />

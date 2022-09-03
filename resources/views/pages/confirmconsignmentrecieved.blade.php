@@ -15,7 +15,7 @@
     <div class="card-body">
       <div class="mb-3 col-12 mb-0">
         <div class="alert alert-primary">
-          <h6 class="alert-heading fw-bold mb-1">Confirm Your have Recieved The consignment no {{ $consignment->consignmentno }}?</h6>
+          <h6 class="alert-heading fw-bold mb-1">Confirm You Are Recieving The consignment no {{ $consignment->consignmentno }}?</h6>
           <p class="mb-0">Once you Have Confirmed , there is no going back. Please be certain.</p>
         </div>
       </div>

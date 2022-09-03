@@ -27,5 +27,10 @@ class consignment extends Model
     {
         return $this->belongsTo('App\Models\User','closedby');
     }
+
+    public function accountuser()
+    {
+        return $this->belongsTo('App\Models\User','accuserclosedby');
+    }
   
 }

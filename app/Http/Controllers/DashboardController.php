@@ -26,9 +26,16 @@ class dashboardController extends Controller
      */
     public function index()
     {   
-        
+        $fruit = User::where('roles',9)->get();
+    	$veg = User::where('roles',3)->get();
+    	
+    	$fruit_count = count($fruit);    	
+    	$veg_count = count($veg);
+    	
+    	
+    	return view('pages.dashboard',compact('fruit_count','veg_count'));
     
      
-        return view('pages.dashboard');
+        // return view('pages.dashboard');
     }
 }

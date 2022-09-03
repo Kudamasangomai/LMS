@@ -40,67 +40,98 @@
     </div>
     <hr class="my-0" />
     <div class="card-body">
-      <form id="formAccountSettings" method="POST" onsubmit="return false">
-        <div class="row">
-          <div class="mb-3 col-md-6">
-            <label for="firstName" class="form-label">Consignment No</label>
-            <input
-              class="form-control"
-              type="text"
-              id="firstName"
-              name="firstName"
-              value="{{  $consignment->consignmentno}}"
-              autofocus
-            />
-          </div>
-          <div class="mb-3 col-md-6">
-            <label for="lastName" class="form-label">Last Name</label>
-            <input class="form-control"
-             type="text" 
-             name="lastName" id="lastName" 
-               value="{{  $consignment->contract }}" />
-          </div>
+    
+      <div class="card">
+        <!-- Notifications -->
+        <h5 class="card-header">Consignment Details</h5>
+        <div class="card-body">
+  
+          
+          <div class="error"></div>
+        </div>
+        <div class="table-responsive">
+          <table class="table table-striped table-borderless border-bottom">
+            <thead>
+              <tr>
+                <th class="text-nowrap"></th>
+                <th class="text-nowrap"></th>
+                <th class="text-nowrap"> </th>
+                <th class="text-nowrap"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="text-nowrap"></td>
+                <td class="text-nowrap">Consignment No</td>
+                <td class="text-nowrap">{{ $consignment->consignmentno }}</td>
+                <td class="text-nowrap"></td>               
+              </tr>
+              <tr>
+                <td class="text-nowrap"></td>
+                <td class="text-nowrap">Driver</td>
+                <td class="text-nowrap">{{ $consignment->driver->driver_name }}</td>
+                <td class="text-nowrap"></td>               
+              </tr>
+              <tr>
+                <td class="text-nowrap"></td>
+                <td class="text-nowrap">Date Of Dispatch</td>
+                <td class="text-nowrap">{{ $consignment->dateofdispatch }}</td>
+                <td class="text-nowrap"></td>               
+              </tr>
+              <tr>
+                <td class="text-nowrap"></td>
+                <td class="text-nowrap">Loading & offloadingPoint </td>
+                <td class="text-nowrap">{{ $consignment->loadingpoint }} to {{ $consignment->offloadingpoint }}</td>
+                <td class="text-nowrap"></td>               
+              </tr>
+              <tr>
+                <td class="text-nowrap"></td>
+                <td class="text-nowrap">Submitted</td>
+                <td class="text-nowrap">{{ $consignment->submitted }}</td>
+                <td class="text-nowrap"></td>               
+              </tr>
+              <tr>
+                <td class="text-nowrap"></td>
+                <td class="text-nowrap">Comment</td>
+                <td class="text-nowrap">{{ $consignment->comment }}</td>
+                <td class="text-nowrap"></td>               
+              </tr>
+              <tr>
+                <td class="text-nowrap"></td>
+                <td class="text-nowrap">Account Received</td>
+                <td class="text-nowrap">
+                  @if ($consignment->accrecieved == 0)
+                      No
+                      @else
+                      Yes by {{ $consignment->accountuser->name }} on {{ $consignment->dateaccountsrecieved }} 
+                  @endif
+              
+                </td>
+                <td class="text-nowrap"></td>               
+              </tr>
+              
+           
+             
+            </tbody>
+          </table>
+        </div>
+        <div class="card-body">
        
     
-     
+            <div class="row">
+             
+              <div class="mt-4">
           
-         
-        
-       
-          
-         
+                <button type="reset" class="btn btn-info"><a  href="/consignments/{{$consignment->id}}/edit"> Edit</a></button>
+                <button type="reset" class="btn btn-outline-secondary">Print</button>
+              </div>
+            </div>
+    
         </div>
-        <div class="mt-2">
-          <button type="submit" class="btn btn-primary me-2">Save changes</button>
-          <button type="reset" class="btn btn-outline-secondary">Cancel</button>
-        </div>
-      </form>
-    </div>
+        <!-- /Notifications -->
+ 
+
     <!-- /Account -->
   </div>
-  <div class="card">
-    <h5 class="card-header">Delete Account</h5>
-    <div class="card-body">
-      <div class="mb-3 col-12 mb-0">
-        <div class="alert alert-warning">
-          <h6 class="alert-heading fw-bold mb-1">Are you sure you want to delete your account?</h6>
-          <p class="mb-0">Once you delete your account, there is no going back. Please be certain.</p>
-        </div>
-      </div>
-      <form id="formAccountDeactivation" onsubmit="return false">
-        <div class="form-check mb-3">
-          <input
-            class="form-check-input"
-            type="checkbox"
-            name="accountActivation"
-            id="accountActivation"
-          />
-          <label class="form-check-label" for="accountActivation"
-            >I confirm my account deactivation</label
-          >
-        </div>
-        <button type="submit" class="btn btn-danger deactivate-account">Deactivate Account</button>
-      </form>
-    </div>
-  </div>
+
 @endsection

@@ -103,7 +103,7 @@
 
          
          
-          @if (Auth::user()->roles >= 5)
+          @if (Auth::user()->roles >= 4)
           <ul class="menu-inner py-1">
             <!-- Dashboard -->
             <li class="menu-item active">
@@ -133,13 +133,15 @@
                 <div data-i18n="Analytics">Fleet</div>
               </a>
             </li>
-
+            @if (Auth::user()->roles ==9)
             <li class="menu-item">
               <a href="/users" class="menu-link">
                 <i class='menu-icon tf-icons bx bxs-user'></i>
                 <div data-i18n="Analytics">Users</div>
               </a>
             </li>
+            @else
+            @endif
 
             <li class="menu-item">
               <a href="/trip" class="menu-link">

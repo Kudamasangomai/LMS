@@ -23,11 +23,27 @@ class ConsignmentController extends Controller
      */
     public function index()
     {
-        $data = array(
-            'title' =>  'Consignments',
-            'consignments' => consignment::orderBy('dateofdispatch', 'desc')->paginate(10),
-        );
-        return view('pages.consignments')->with($data);
+        // $data = array(
+        //     'title' =>  'Consignments',
+        //     'consignments' => consignment::orderBy('dateofdispatch', 'desc')->paginate(10),
+        // );
+        // return view('pages.consignments')->with($data);
+
+
+        $title = 'Consignments';
+       
+        
+        if(auth()->user()->roles == 3)
+        {
+            $consignments = consignment::where('Submitted','not like', '%Pending%')->paginate(10);
+            return view('pages.consignments',compact('title','consignments'));
+        }else
+        {
+            $consignments = consignment::orderBy('dateofdispatch', 'desc')->paginate(10);
+            return view('pages.consignments',compact('title','consignments'));
+        }
+  
+   
     }
 
     /**
@@ -142,11 +158,11 @@ class ConsignmentController extends Controller
         $consignment->contract = $request->input('contract');
         $consignment->loadingpoint = $request->input('loadingpoint');
         $consignment->offloadingpoint = $request->input('offloadingpoint');
-        //$consignment->dateofdispatch = $request->input('dateofdispatch');
+        $consignment->dateofdispatch = $request->input('dateofdispatch');
         // $consignment->user_id = auth()->user()->id;
 
         $consignment->save();
-        return redirect('/consignments')->with('success', 'Consignment Updated');
+        return redirect()->route('consignments.show',[ $consignment->id ])->with('success',' Consignment Successfully Updated');
     }
 
 
@@ -230,7 +246,8 @@ class ConsignmentController extends Controller
         $consignment->dateaccountsrecieved = $dater;
 
         $consignment->save();
-        return redirect('/consignments/closedConsigments')->with('success', 'Consignment Recieved');
+        //return redirect('/consignments/closedConsigments')->with('success', 'Consignment Recieved');
+        return redirect()->route('consignments.show',[ $consignment->id ])->with('success',' Consignment Successfully Recieved');
     }
 
     /**

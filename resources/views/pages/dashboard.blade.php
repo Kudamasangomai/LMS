@@ -1,9 +1,6 @@
 @extends('layouts.base')
 
 @section('content')
-
-
-
 <div class="container-xxl flex-grow-1 container-p-y">
     <div class="row">
       
@@ -107,12 +104,11 @@
      
 
     </div>
-    <h3>Laravel 8 ChartJS 
+    <h3>Laravel 8 ChartJS  {{$veg_count}}   </h3>
+   
 
-    
-
-    </h3>
-    
+   
   </div>
- 
+
   @endsection
+ 

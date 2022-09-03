@@ -35,7 +35,7 @@
             </div>
 
             <div class="mb-3 col-md-6">
-              <label for="html5-datetime-local-input" class="col-md-6 col-form-label">{{ $consignment->dateofdispatch }}</label>
+              <label for="html5-datetime-local-input" class="col-md-6 col-form-label">Date Of Dispatch </label>
               
                 <input
                   class="form-control"
