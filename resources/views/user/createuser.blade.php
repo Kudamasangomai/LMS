@@ -59,7 +59,7 @@
                   id="firstName"
                   name="name"
                   placeholder="First and lastnames "
-                  value="" 
+                  value="{{ old('name') }}" 
                   autofocus
                 />
                 @error('name')
@@ -92,7 +92,7 @@
                   type="text"
                   id="email"
                   name="email"
-                  value=""
+                  value="{{ old('email') }}"
                   placeholder="example@gmail.com "
                  
                 />
@@ -108,10 +108,10 @@
                 <label for="email" class="form-label">Password</label>
                 <input
                   class="form-control"
-                  type="text"
+                  type="password"
                   id="email"
                   name="password"
-                  value=""
+                  value="{{ old('password') }}"
                   placeholder="wkP219!!@"
                  
                 />
