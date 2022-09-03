@@ -6,6 +6,7 @@ use App\Models\consignment;
 use App\Models\driver;
 use App\Models\fleet;
 use DateTime;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 
 class ConsignmentController extends Controller
@@ -192,13 +193,16 @@ class ConsignmentController extends Controller
     public function search(Request $request)
     {
         $search = $request->input('search');
-        $data = array(
-            'title' => 'Searched Data',
-            'consignments' => consignment::query()
-                ->where('consignmentno', 'LIKE', '%' . $search . '%')
-                ->paginate(9),
-        );
-        return view('pages.consignments')->with($data);
+        $title = 'Searched Data';
+        $consignments = consignment::query()
+              ->where('consignmentno', 'LIKE', '%' . $search . '%')
+              ->orWhereHas('driver', function($query) use($search){
+                $query->where('driver_name', 'like', '%' . $search. '%');})
+             ->orWhereHas('fleet', function($query) use($search){
+                $query->where('fleetno', 'like', '%' . $search. '%');})                
+             ->paginate(10);      
+
+        return view('pages.consignments',compact('consignments','title'));
     }
 
     public function consignmentrecieved($id)

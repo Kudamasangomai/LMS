@@ -8,7 +8,7 @@
 <div class="card" >
     {{-- <h5 class="card-header">list of drivers</h5> --}}
     {{-- <div class="table-responsive text-nowrap"> --}}
-      <table class="table">
+      <table class="table" id="dataTable">
         <thead class="table-dark">
           <tr>
           
