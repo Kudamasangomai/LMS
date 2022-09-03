@@ -2,10 +2,27 @@
 @section('content')
 @include('layouts.consignmentsmenu')
 @include('inc.messages')
+<style>
+  .dataTables_info{
+   display: none;
+  }
+.dataTables_paginate{
+  display: none;
+}
 
+.dataTables_filter{
+  display: none;
+}
+</style>
+<link href="{{ asset('assets/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css')}}" 
+rel="stylesheet">
 
+<link href="{{ asset('assets/jquery-datatable/skin/bootstrap/css/buttons.datatable.min.css')}}" 
+rel="stylesheet">
+<link href="{{ asset('assets/jquery-datatable/skin/bootstrap/css/dataTables.min.css')}}" 
+rel="stylesheet">
 <div class="card mb-4">
-    <h5 class="card-header">{{ $consignment->driver->driver_name }}</h5>
+
     <!-- Account -->
     <div class="card-body">
       <div class="d-flex align-items-start align-items-sm-center gap-4">
@@ -18,23 +35,10 @@
           id="uploadedAvatar"
         />
         <div class="button-wrapper">
-          <label for="upload" class="btn btn-primary me-2 mb-4" tabindex="0">
-            <span class="d-none d-sm-block">Upload new photo</span>
-            <i class="bx bx-upload d-block d-sm-none"></i>
-            <input
-              type="file"
-              id="upload"
-              class="account-file-input"
-              hidden
-              accept="image/png, image/jpeg"
-            />
-          </label>
-          <button type="button" class="btn btn-outline-secondary account-image-reset mb-4">
-            <i class="bx bx-reset d-block d-sm-none"></i>
-            <span class="d-none d-sm-block">Reset</span>
-          </button>
+       
+        
 
-          <p class="text-muted mb-0">Allowed JPG, GIF or PNG. Max size of 800K</p>
+          <h5 class="card-header">{{ $consignment->driver->driver_name }}</h5>
         </div>
       </div>
     </div>
@@ -50,7 +54,7 @@
           <div class="error"></div>
         </div>
         <div class="table-responsive">
-          <table class="table table-striped table-borderless border-bottom">
+          <table class="table table-bordered table-striped table-hover dataTable js-exportable">
             <thead>
               <tr>
                 <th class="text-nowrap"></th>
@@ -133,5 +137,32 @@
 
     <!-- /Account -->
   </div>
+  <script src="{{ asset('assets/jquery-datatable/jquery.js') }}"></script>
+      
+  <script src="{{ asset('assets/jquery-datatable/jquery.dataTables.js') }}"></script>
 
+  <script src="{{ asset('assets/jquery-datatable/skin/bootstrap/js/dataTables.bootstrap.js') }}"></script>
+  <script src="{{ asset('assets/jquery-datatable/extensions/export/dataTables.buttons.min.js') }}"></script>    
+  <script src="{{ asset('assets/jquery-datatable/extensions/export/buttons.flash.min.js') }}"></script>
+  <script src="{{ asset('assets/jquery-datatable/extensions/export/jszip.min.js') }}"></script>
+  <script src="{{ asset('assets/jquery-datatable/extensions/export/pdfmake.min.js') }}"></script>
+  <script src="{{ asset('assets/jquery-datatable/extensions/export/vfs_fonts.js') }}"></script>
+  <script src="{{ asset('assets/jquery-datatable/extensions/export/buttons.html5.min.js') }}"></script>
+  <script src="{{ asset('assets/jquery-datatable/extensions/export/buttons.print.min.js') }}"></script>
+  {{-- <script src="{{ asset('assets/jquery-datatable/jquery-datatable.js') }}"></script> --}}
+
+<script>
+   $(document).ready(function() {
+            $('.js-exportable').DataTable( {
+                dom: 'Bfrtip',
+                buttons: [
+                    'copy', 'csv', 'excel', 'pdf', 'print'
+                 ]
+            } );
+        } );
+        
+        
+        
+        </script>
+       
 @endsection

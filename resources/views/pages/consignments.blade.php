@@ -2,6 +2,22 @@
 @section('content')
 @include('layouts.consignmentsmenu')
 @include('inc.messages')
+<link href="{{ asset('assets/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css')}}" 
+rel="stylesheet">
+
+<link href="{{ asset('assets/jquery-datatable/skin/bootstrap/css/buttons.datatable.min.css')}}" 
+rel="stylesheet">
+<link href="{{ asset('assets/jquery-datatable/skin/bootstrap/css/dataTables.min.css')}}" 
+rel="stylesheet">
+
+<style>
+  .dataTables_info{
+   display: none;
+  }
+.dataTables_paginate{
+  display: none;
+}
+</style>
 
 {!! Form::open([
   'class'=>'form-inline',
@@ -20,7 +36,7 @@
       <div class="card" >
         <h5 class="card-header">list of consignments </h5>
         <div class="table-responsive text-nowrap">
-          <table class="table">
+          <table class="table table-bordered table-striped table-hover dataTable js-exportable">
             <thead class="table-dark">
               <tr>
                 <th>Consignment No</th>
@@ -48,7 +64,7 @@
                   </td>
                 <td>
                     {{ $consignment->driver->driver_name }} 
-                       <!--$consignment->driver['driver_name']--> 
+        
                 </td>
                 <td>
                     {{ $consignment->fleet->fleetno }}
@@ -78,7 +94,7 @@
                         </td>
                         <td>
                             {{ $consignment->user->name }}
-                          <!--onsignment->closedbyf['name']-->
+                   
                             </td>
             
                 <td> 
@@ -141,5 +157,34 @@
 
 
       </div>
-      <!--/ Bootstrap Table with Header Dark -->
-@endsection
+      
+      <script src="{{ asset('assets/jquery-datatable/jquery.js') }}"></script>
+      
+      <script src="{{ asset('assets/jquery-datatable/jquery.dataTables.js') }}"></script>
+
+      <script src="{{ asset('assets/jquery-datatable/skin/bootstrap/js/dataTables.bootstrap.js') }}"></script>
+      <script src="{{ asset('assets/jquery-datatable/extensions/export/dataTables.buttons.min.js') }}"></script>    
+      <script src="{{ asset('assets/jquery-datatable/extensions/export/buttons.flash.min.js') }}"></script>
+      <script src="{{ asset('assets/jquery-datatable/extensions/export/jszip.min.js') }}"></script>
+      <script src="{{ asset('assets/jquery-datatable/extensions/export/pdfmake.min.js') }}"></script>
+      <script src="{{ asset('assets/jquery-datatable/extensions/export/vfs_fonts.js') }}"></script>
+      <script src="{{ asset('assets/jquery-datatable/extensions/export/buttons.html5.min.js') }}"></script>
+      <script src="{{ asset('assets/jquery-datatable/extensions/export/buttons.print.min.js') }}"></script>
+      {{-- <script src="{{ asset('assets/jquery-datatable/jquery-datatable.js') }}"></script> --}}
+
+<script>
+       $(document).ready(function() {
+                $('.js-exportable').DataTable( {
+                    dom: 'Bfrtip',
+                    buttons: [
+                        'copy', 'csv', 'excel', 'pdf', 'print'
+                     ]
+                } );
+            } );
+            
+            
+            
+            </script>
+           
+      @endsection
+    
