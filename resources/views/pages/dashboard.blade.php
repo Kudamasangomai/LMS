@@ -91,24 +91,32 @@
               </div>
             </div>
           </div>
-          
-         
-         
-
         </div>
       </div>   
-
-
-
-
-     
-
     </div>
-    <h3>Laravel 8 ChartJS  {{$veg_count}}   </h3>
-   
+    <h3>Laravel 8 ChartJS    </h3>
+    
+
+    <div class="row">
+      <div class="mb-3 col-md-6">
+
+        <h4>{{ $chart1->options['chart_title'] }}</h4>
+        {!! $chart1->renderHtml() !!}
+       
+      </div>
+      <div class="mb-3 col-md-6">
+
+        <h4>{{ $consignments_chart->options['chart_title'] }}</h4>
+        {!! $consignments_chart->renderHtml() !!}
+      </div>
+    </div>
 
    
   </div>
 
   @endsection
- 
+  @section('javascript')
+  {!! $chart1->renderChartJsLibrary() !!}
+  {!! $chart1->renderJs() !!}
+  {!! $consignments_chart->renderJs() !!}
+  @endsection

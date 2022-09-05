@@ -17,7 +17,8 @@
         "laravel/framework": "^8.0",
         "laravel/tinker": "^2.0",
         "laravel/ui": "^3.4",
-        "laravelcollective/html": "^6.3"
+        "laravelcollective/html": "^6.3",
+        "laraveldaily/laravel-charts": "^0.1.29"
     },
     "require-dev": {
         "facade/ignition": "^2.3.6",
