@@ -27,8 +27,6 @@ class dashboardController extends Controller
      */
     public function index()
     {   
-        
-    $current = Carbon::now()->format('M-Y');
     $total_consignment = consignment::WhereMonth('created_at',date('m'))->whereYear('created_at',date('Y'))->count();
     $submitted_consignment = consignment::WhereMonth('created_at',date('m'))->whereYear('created_at',date('Y'))
                         ->where('submitted', 'Submitted')->count();
@@ -37,22 +35,6 @@ class dashboardController extends Controller
     $cancelled_consignment = consignment::WhereMonth('created_at',date('m'))->whereYear('created_at',date('Y'))
                         ->where('submitted', 'Cancelled')->count();
 
-                        
-     $created_consignments_chart = [
-            'chart_title'        => 'Cosignments Created Per month',
-            'report_type'        => 'group_by_date',
-            'model'              => 'App\Models\consignment',        
-            'group_by_field'     => 'created_at',
-            'group_by_period'    => 'month',
-            'filter_field'       =>'submitted',
-            'chart_type'         => 'line',  
-            'chart_color'        => '250,100,100',
-           
-        ];
-        
-      
-        
-        $consignments_chart = new LaravelChart($created_consignments_chart); 
               
 
         $chart_options = [
@@ -70,22 +52,66 @@ class dashboardController extends Controller
             'chart_type'            => 'bar',
             'report_type'           =>'group_by_date',
             'model'                 => 'App\Models\consignment',
-            'group_by_field'        => 'created_at',
-            'group_by_period'       => 'month',
-            'filter_field'          =>'Submitted=Pending',
-            'chart_color'           =>'250,100,100',
+            'group_by_field' => 'created_at',
+            'group_by_period' => 'month',
+             'field_distinct'        =>'Pending',
+            // 'group_by_field'        => 'Submitted',       
+            'filter_field'          =>'created_at',
+            // 'filter_period'         => 'month',
+            'chart_color'          =>'250,100,100',
             
             ];    
        
         $chart1 = new LaravelChart($chart_options,   $settings2);
+        
+
+
+        
+        $consignments_chart = [
+            'chart_title' => 'Cosignments Created Per month',
+            'report_type' => 'group_by_date',
+            'model' => 'App\Models\consignment',
+            'group_by_field' => 'dateofdispatch',
+            'group_by_period' => 'month',
+            'filter_field'=>'submitted',
+            'chart_type' => 'line',
+            'conditions'            =>
+             [
+            ['name' => 'Pending', 'condition' => 'submitted = submitted', 'color' => 'black', 'fill' => false],
+            ['name' => 'Latvia ', 'condition' => 'submitted = submitted', 'color' => 'blue','fill' => false],
+
+            ],
+
+          
+         
+           
+            
+        ];$consignments_chart = new LaravelChart($consignments_chart); 
+        
+        
+        $record = consignment::select(DB::raw("COUNT(*) as count"), DB::raw("YEAR(created_at) as year"), DB::raw("MONTH(created_at) as month"))
+        ->where('submitted', '=','Pending')->groupBy('year','month')->orderBy('month')->get();
+       
+        $record2 = consignment::select(DB::raw("COUNT(*) as count"), DB::raw("YEAR(created_at) as year"), DB::raw("MONTH(created_at) as month"))
+        ->where('submitted', '=','Submitted')->groupBy('year','month')->orderBy('month')->get();
+
+
+         $data = [];    
+         foreach($record as $row) {
+            $data['label'][] = $row->month;
+            $data['data'][] = (int) $row->count;
+          }
+       
+    
+        $chart_data = json_encode($data);
+    
+        
+
+
     	return view('pages.dashboard',compact(
             'chart1',
-            'consignments_chart',
-            'total_consignment',
-            'submitted_consignment',
-            'pending_consignment',
-            'cancelled_consignment',
-            'current'
+            'consignments_chart','chart_data',
+            'total_consignment','submitted_consignment','pending_consignment','cancelled_consignment'
         ));
     }
 }
