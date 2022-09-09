@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+//use Illuminate\Controllers\Auth;
 
 use App\Http\Controllers\ConsignmentController;
 use App\Http\Controllers\UserController;
@@ -9,6 +10,7 @@ use App\Http\Controllers\DriverController;
 use App\Http\Controllers\FleetController;
 use App\Http\Controllers\TripController;
 use App\Http\Controllers\PDFController;
+use App\Http\Controllers\Auth\LoginController;
 
 
 /*
@@ -20,16 +22,18 @@ use App\Http\Controllers\PDFController;
 | routes are loaded by the RouteServiceProvider within a group which
 | contains the "web" middleware group. Now create something great!
 |
+use App\Http\Controllers\Auth\LogoutController;
+
+
 */
 
 // the route will go to the index page / the login page
-Route::get('/', [App\Http\Controllers\Auth\LoginController::class, 'showLoginForm'])->name('login');
+Route::get('/', [LoginController::class, 'showLoginForm'])->name('login');
 
 // direct users to the dashboard after a succefull login(am still to unserstand this)
 //Route::get('/dashboard', function () { return view('pages.dashboard'); })->middleware(['auth'])->name('dashboard');
 Route::get('/dashboard',[App\Http\Controllers\DashboardController::class, 'index']);
 
-require __DIR__.'/auth.php';
 Auth::routes();
 
 
@@ -54,5 +58,6 @@ Route::put('/trip/{id}/tripend/',[TripController::class, 'tripend']);
 
 
 Route::get('/drivers/{id}/delete/',[DriverController::class, 'delete']);
+Route::get('/drivers/{id}/driverperfomance/',[DriverController::class, 'driverperformance']);
 
-Route::get('create-pdf-file', [PDFController::class, 'index']);
+Route::get('create-pdf-file', [PDFController::class, 'pdfindex']);

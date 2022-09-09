@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\consignment;
 use App\Models\driver;
+use App\Models\tripfuel;
 use Illuminate\Http\Request;
 
 class DriverController extends Controller
@@ -20,7 +22,7 @@ class DriverController extends Controller
     {
         $data= array(
             'title'=> 'Drivers',
-            'drivers'=> driver::orderby('driver_name','asc')->paginate(5)
+            'drivers'=> driver::orderby('driver_name','asc')->paginate(10)
         );
         //dd($data);
         return view('drivers.driverlist')->with($data);
@@ -79,6 +81,7 @@ class DriverController extends Controller
         $data = array(
             'title' => 'Driver Detailed Infomation',
             'driver' => driver::find($id),
+           'totaltrips' => tripfuel::where('driver_id',$id)
 
     );
        return view('drivers.driverdetail')->with($data);
@@ -130,6 +133,23 @@ class DriverController extends Controller
             return redirect()->back()->with('success', " $driver->driver_name Profile updated");
    
  
+    }
+    public function driverperformance($id)
+    {
+
+    
+     
+        $data = array(
+            'title' => 'Driver Perfomance',
+            'driver' => driver::find($id),
+            'drivertrips' => tripfuel::where('driver_id',$id)->paginate(10),
+
+    );
+    //dd($data['drivertrips']);
+        return view('drivers.driverperformance')->with($data);
+       
+        
+
     }
 
     /**

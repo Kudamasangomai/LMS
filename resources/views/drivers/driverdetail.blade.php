@@ -15,7 +15,9 @@
           'enctype' => 'multipart/form-data']) 
           !!}
         <div class="card mb-4">
-          <h5 class="card-header">{{ $driver->driver_name}} Profile Details</h5>
+          <div class="row">
+            <div class="mb-3 col-md-6">
+          <h5 class="card-header">{{ $driver->driver_name}} Profile Details </h5>
           <!-- Account -->
           <div class="card-body">
             <div class="d-flex align-items-start align-items-sm-center gap-4">
@@ -46,6 +48,21 @@
 
                 <p class="text-muted mb-0">Allowed JPG, GIF or PNG. Max size of 800K</p>
               </div>
+            </div>
+            
+          </div>
+            </div>
+            <div class="mb-3 col-md-6">
+              <h5 class="card-header"> Driver Summary Details </h5>
+              <div class="card-body">
+               Total Trips :{{ $totaltrips->count() }}
+              </div>
+              
+               
+                <button type="button" class="btn btn-primary">
+                  <a style="float: right;color:white;" href="/drivers/{{$driver->id}}/driverperfomance"
+                    ><i class="bx bx-link-alt me-1"></i> View </a>
+                </button>
             </div>
           </div>
           <hr class="my-0" />

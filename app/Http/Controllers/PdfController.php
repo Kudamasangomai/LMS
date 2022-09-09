@@ -12,7 +12,7 @@ use Barryvdh\DomPDF\Facade\Pdf as Pdf;
 
 class PdfController extends Controller
 {
-    public function index()
+    public function pdfindex()
     {
         $data = array(
             'title' => 'Welcome to Tutsmake.com',

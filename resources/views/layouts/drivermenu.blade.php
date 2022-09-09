@@ -28,16 +28,11 @@
                   ><i class="bx bx-link-alt me-1"></i> Connections</a
                 >
               </li>
+
+           
             </ul>
-      {{-- <li>
-        <form class="d-flex">
-          <div class="input-group">
-            <span class="input-group-text"><i class="tf-icons bx bx-search"></i></span>
-            <input type="text" class="form-control" placeholder="Search..." />
-          </div>
-        </form>
-      </li> --}}
-      
+     
+          
           </ul>
         
 

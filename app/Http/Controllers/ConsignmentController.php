@@ -39,7 +39,7 @@ class ConsignmentController extends Controller
             return view('pages.consignments',compact('title','consignments'));
         }else
         {
-            $consignments = consignment::orderBy('dateofdispatch', 'desc')->paginate(10);
+            $consignments = consignment::orderBy('dateofdispatch', 'desc')->paginate(5);
             return view('pages.consignments',compact('title','consignments'));
         }
   
