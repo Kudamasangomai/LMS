@@ -18,11 +18,11 @@
               
                   
                
-              <li class="nav-item">
+              {{-- <li class="nav-item">
                 <a class="nav-link" href="/trip/create">
                   <i class='bx bx-highlight'></i> Create Trip
                   </a>
-              </li>
+              </li> --}}
         
              
         

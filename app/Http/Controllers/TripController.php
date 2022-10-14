@@ -1,11 +1,14 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use App\Models\consignment;
 use App\Models\driver;
 use App\Models\fleet;
 use App\Models\tripfuel;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 
 
 class TripController extends Controller
@@ -24,7 +27,7 @@ class TripController extends Controller
         $data = array(
             'title'=>'Fuel Variance',
            // 'consignments' => consignment::orderBy('dateofdispatch','desc')->paginate(10),
-            'trip'=> tripfuel::orderBy('created_at','desc')->paginate(10),
+            'trip'=> tripfuel::orderBy('created_at','desc')->paginate(5),
             //'trip'=> tripfuel::with(['tripdriver'])->paginate(10),
         );
        // dd($data['trip']);
@@ -36,12 +39,14 @@ class TripController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($consignmentno)
     {
+        $con = consignment::where('consignmentno', $consignmentno)->get();
         $data = array(
             'title'=>'Create Trip',
-            'drivers'=> driver::all(),// select * from drivers;
-            'fleet'=> fleet::all(),
+          'consignments' =>$con,
+            // 'drivers'=> driver::all(),// select * from drivers;
+            // 'fleet'=> fleet::all(),
         );
         
         return view('trip.createtrip')->with($data);
@@ -56,7 +61,7 @@ class TripController extends Controller
     public function store(Request $request)
     {
         $this->validate($request,[
-           // 'consignmentno' => 'required|unique:consignments|max:6',
+           'consignmentno' => 'required|unique:tripfuels',
             'drivername' => 'required',
             'fleetno' => 'required',
             'openingkm' => 'required|max:7',
@@ -65,6 +70,7 @@ class TripController extends Controller
         ]);
 
         $tripdetails = new tripfuel();
+        $tripdetails->consignmentno = $request->input('consignmentno');
         $tripdetails->driver_id = $request->input('drivername');
         $tripdetails->fleet_id = $request->input('fleetno');
         $tripdetails->openingkm = $request->input('openingkm');
@@ -209,7 +215,7 @@ class TripController extends Controller
     }
 
 
-
+ 
     
     /**
      * Remove the specified resource from storage.

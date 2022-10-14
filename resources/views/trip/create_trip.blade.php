@@ -15,69 +15,60 @@
           'enctype' => 'multipart/form-data']) 
           !!}
           <div class="row">
+            <div class="mb-3 col-md-6">
+                @foreach($consignments as $consignments)
+              <label for="defaultSelect" class="form-label">Con umber</label>
+            
+             
+              <input
+              class="form-control"
+              type="text"
+                value="{{ $consignments->consignmentno }}"
+              id="openingodo"
+              name="consignmentno"
+            />
 
+          
+
+        
+         
+              @error('fleetno')
+              <p class="alert-danger">
+                {{ $message }}
+              </p>
+              @enderror
+            </div>
 
             <div class="mb-3 col-md-6">
-              @foreach($consignments as $consignments)
-                <label for="defaultSelect" class="form-label">Consignment No</label>          
+                <label for="defaultSelect" class="form-label">Fleet No</label>
                 <input
                 class="form-control"
                 type="text"
-               
-                readonly="readonly"
-                value="{{ $consignments->consignmentno }}"
-                id="consignmentno"
-                name="consignmentno"/>     
-
-      
-       
-              @error('consignmentno')
-               <p class="alert-danger">
-                 {{ $message }}
-               </p>
-              @enderror
-            </div>
-          
-          <div class="mb-3 col-md-6">
-            <label for="defaultSelect" class="form-label">Fleet No</label>
-            <input type="text" name="fleetno" value=" {{ $consignments->fleet->id }}"/>
-            <input
-            class="form-control"
-            readonly="readonly"
-            type="text"
-            value="   {{ $consignments->fleet->fleetno }}"
-       
-
-          />
-            @error('fleetno')
-            <p class="alert-danger">
-              {{ $message }}
-            </p>
-            @enderror
-          </div>
-
-
-          <div class="mb-3 col-md-6">
-            <label for="defaultSelect" class="form-label">Driver Name 
-              <input type="hidden" name="drivername" value=" {{ $consignments->driver->id }}"/>
-            </label>
-            <input
-            class="form-control"
-            readonly="readonly"
-            type="text"
-            value="{{ $consignments->driver->driver_name }}"
-           
-           
-          />
-            @error('drivername')
-            <p class="alert-danger">
-              {{ $message }}
-            </p>
-            @enderror
-          </div>
-           
-         
-
+                  value="   {{ $consignments->fleet->fleetno }}"
+                id="openingodo"
+                name="fleetno"
+              />
+                @error('fleetno')
+                <p class="alert-danger">
+                  {{ $message }}
+                </p>
+                @enderror
+              </div>
+              <div class="mb-3 col-md-6">
+                <label for="defaultSelect" class="form-label">Driver Name</label>
+                <input
+                class="form-control"
+                type="text"
+                  value="     {{ $consignments->driver->driver_name }} "
+                id="drivername"
+                name="drivername"
+              />
+                @error('drivername')
+                <p class="alert-danger">
+                  {{ $message }}
+                </p>
+                @enderror
+              </div>
 
               <div class="mb-3 col-md-6">
                 <label for="firstName" class="form-label">Opening Km</label>
@@ -86,9 +77,8 @@
                   type="number"
                   min="1"
                   name="openingkm"
-                  placeholder="Opening Odometer"
+                 placeholder="Opening Odometer"
                   autofocus
-                  value="{{ old('openingkm') }}"
                 />
                 @error('openingkm')
                 <p class="alert-danger">
@@ -102,9 +92,9 @@
                 <input
                   class="form-control"
                   type="number"
-                  value="{{ old('fuelbeforetrip') }}"
+               
                   name="fuelbeforetrip"
-                  placeholder="Actual Refueling"
+                 placeholder="Actual Refueling"
                   autofocus
                 />
                 @error('fuelbeforetrip')
@@ -114,6 +104,33 @@
                 @enderror
               </div>
               @endforeach
+
+        
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
             </div>
             <div class="mt-2">

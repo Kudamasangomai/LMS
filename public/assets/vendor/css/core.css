@@ -15686,6 +15686,28 @@ html:not(.layout-footer-fixed) .content-wrapper {
   display: none !important;
 }
 
+/* .sidenav {
+  height: 100%;
+  width: 160px;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #111;
+  overflow-x: hidden;
+  padding-top: 20px;
+} */
+
+
+#layout-navbar {
+  overflow: hidden;
+
+}
+.sticky {
+  position: fixed;
+  top: 0;
+}
+
 :not(.layout-menu) > .menu-vertical.menu-collapsed:not(.layout-menu):not(:hover) .app-brand {
   width: 5.25rem;
 }

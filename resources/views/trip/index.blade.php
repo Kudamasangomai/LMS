@@ -10,13 +10,19 @@
   </div>
 </form>
 <br>
-<div class="card" >
+
+
+
+
+
+<div class="card">
     <h5 class="card-header">List of Trip</h5>
-    <div class="table-responsive text-nowrap">
+    <div class="table-responsive">
       <table class="table">
         <thead class="table-dark">
           <tr>
-            <th>Trip Id </th>
+            {{-- <th>#</th> --}}
+            <th>Consigment no </th>
             <th>Date </th>
             <th>Fleet</th>
             <th>Driver</th>
@@ -27,9 +33,9 @@
             <th>Distance  Km</th>
             <th>Fuel Used Km</th>
             <th>Consumption Km</th>
-            <th>Actual Refuelling</th>
+            <th>Actual Rf</th>
             <th>Varience</th>
-            <th>Additional Fuel</th>
+            <th>+ Fuel</th>
             <th>Total In tank</th>
             <th>Comment</th>
             <th>shortage</th>
@@ -43,11 +49,15 @@
             @if(count($trip) > 0)
             @foreach($trip as $tripinfo)
           <tr>
-            <td><i class="fab fa-angular fa-lg text-danger me-3">
+            {{-- <td><i class="fab fa-angular fa-lg text-danger me-3">
             </i>  {{ $tripinfo->id }} 
+            </td> --}}
+
+            <td><i class="fab fa-angular fa-lg text-danger me-3">
+            </i>  {{ $tripinfo->consignmentno }} 
             </td>
                 <td><i class="fab fa-angular fa-lg text-danger me-3">
-                </i>  {{ $tripinfo->created_at->format('d/M/Y h:m') }} 
+                </i>  {{ $tripinfo->created_at->format('d/M/Y') }} 
                 </td>
                  <td><i class="fab fa-angular fa-lg text-danger me-3">
                 </i>  {{ $tripinfo->tripfleet->fleetno }}  

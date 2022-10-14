@@ -1,48 +1,44 @@
 <!DOCTYPE html>
-<html lang="en">
+
+<html
+  lang="en"
+  class="light-style layout-menu-fixed"
+  dir="ltr"
+  data-theme="theme-default"
+  data-assets-path="../assets/"
+  data-template="vertical-menu-template-free"
+>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-     <!-- CSRF Token -->
-     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>{{ config('app.name', 'BlueStarLMS') }}</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+   <!-- CSRF Token -->
+   <meta name="csrf-token" content="{{ csrf_token() }}">
+  <title>{{ config('app.name', 'BlueStarLMS') }}</title>
 
 
-    <meta name="description" content="" />
+  <meta name="description" content="" />
+  <!-- Icons. Uncomment required icon fonts -->
+  <link rel="stylesheet" href="{{ asset('assets/vendor/fonts/boxicons.css') }}" />
 
-    <!-- Favicon -->
-    {{-- <link rel="icon" type="image/x-icon" href="../assets/img/favicon/favicon.ico" /> --}}
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
-      rel="stylesheet"
-    />
+  <!-- Core CSS -->
+  <link rel="stylesheet" href="{{ asset('assets/vendor/css/core.css') }}" class="template-customizer-core-css" />
+  <link rel="stylesheet" href="{{ asset('assets/vendor/css/theme-default.css') }}" class="template-customizer-theme-css" />
+  <link rel="stylesheet" href="{{ asset('assets/css/demo.css') }}" />
 
-    <!-- Icons. Uncomment required icon fonts -->
-    <link rel="stylesheet" href="{{ asset('assets/vendor/fonts/boxicons.css') }}" />
+  <!-- Vendors CSS -->
+  {{-- <link rel="stylesheet" href="{{ asset('assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css') }}" />
+  <link rel="stylesheet" href="{{ asset('assets/vendor/libs/apex-charts/apex-charts.css ') }}" /> --}}
 
-    <!-- Core CSS -->
-    <link rel="stylesheet" href="{{ asset('assets/vendor/css/core.css') }}" />
-    <link rel="stylesheet" href="{{ asset('assets/vendor/css/theme-default.css') }}" />
-    <link rel="stylesheet" href="{{ asset('assets/css/demo.css') }}" />
+  <!-- Page CSS -->
+  <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+  <!-- Helpers -->
+  {{-- <script src="../assets/vendor/js/helpers.js"></script> --}}
 
-    <!-- Vendors CSS -->
-    {{-- <link rel="stylesheet" href="{{ asset('assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css') }}" /> --}}
-
-
-    {{-- <link rel="stylesheet" href="{{ asset('assets/vendor/libs/apex-charts/apex-charts.css ') }}" /> --}}
-
-    <!-- Page CSS -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <!-- Helpers -->
-    {{-- <script src="../assets/vendor/js/helpers.js"></script> --}}
-
-   {{-- <script src="../assets/js/config.js"></script> --}}
+ {{-- <script src="../assets/js/config.js"></script> --}}
 </head>
-<body>
+
+  <body>
     <!-- Layout wrapper -->
     <div class="layout-wrapper layout-content-navbar">
       <div class="layout-container">
@@ -185,8 +181,7 @@
 
           <nav
             class="layout-navbar container-xxl navbar navbar-expand-xl navbar-detached align-items-center bg-navbar-theme"
-            id="layout-navbar"
-          >
+            id="layout-navbar">
             <div class="layout-menu-toggle navbar-nav align-items-xl-center me-3 me-xl-0 d-xl-none">
               <a class="nav-item nav-link px-0 me-xl-4" href="javascript:void(0)">
                 <i class="bx bx-menu bx-sm"></i>
@@ -194,19 +189,7 @@
             </div>
 
             <div class="navbar-nav-right d-flex align-items-center" id="navbar-collapse">
-              <!-- Search -->
-              <div class="navbar-nav align-items-center">
-                <div class="nav-item d-flex align-items-center">
-                  <i class="bx bx-search fs-4 lh-0"></i>
-                  <input
-                    type="text"
-                    class="form-control border-0 shadow-none"
-                    placeholder="Search..."
-                    aria-label="Search..."
-                  />
-                </div>
-              </div>
-              <!-- /Search -->
+              
 
               <ul class="navbar-nav flex-row align-items-center ms-auto">
                 <!-- Place this tag where you want the button to render. -->
@@ -288,10 +271,10 @@
           <!-- Content wrapper -->
           <div class="content-wrapper">
             <!-- Content -->
-<!-- <div class="container-xxl flex-grow-1 container-p-y"> -->
+<div class="container-xxl flex-grow-1 container-p-y"> 
       @yield('content')
-<!-- </div> -->
-            
+</div>
+          </div>
             <!-- / Content -->
 
             <!-- Footer -->
@@ -361,6 +344,20 @@
 
     <!-- Place this tag in your head or just before your close body tag. -->
     <!--<script async defer src="https://buttons.github.io/buttons.js"></script>-->
+    {{-- <script>
+      window.onscroll = function() {myFunction()};
+      
+      var navbar = document.getElementById("layout-navbar");
+      var sticky = navbar.offsetTop;
+      
+      function myFunction() {
+        if (window.pageYOffset >= sticky) {
+          navbar.classList.add("sticky")
+        } else {
+          navbar.classList.remove("sticky");
+        }
+      }
+      </script> --}}
   </body>
 </html>
 @yield('javascript')

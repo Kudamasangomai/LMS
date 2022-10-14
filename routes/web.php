@@ -54,6 +54,7 @@ Route::get('/trip/{id}/closetrip',[TripController::class, 'closetrip']);
 Route::put('/trip/{id}/tripend/',[TripController::class, 'tripend']);
 
 
+Route::get('/trip/{consingmentno}/create/',[TripController::class, 'create']);
 
 
 

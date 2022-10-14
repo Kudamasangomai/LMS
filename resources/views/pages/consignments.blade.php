@@ -2,9 +2,9 @@
 @section('content')
 @include('layouts.consignmentsmenu')
 @include('inc.messages')
+
 <link href="{{ asset('assets/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css')}}" 
 rel="stylesheet">
-
 <link href="{{ asset('assets/jquery-datatable/skin/bootstrap/css/buttons.datatable.min.css')}}" 
 rel="stylesheet">
 <link href="{{ asset('assets/jquery-datatable/skin/bootstrap/css/dataTables.min.css')}}" 
@@ -35,7 +35,7 @@ rel="stylesheet">
       <!-- Bootstrap Table with Header - Dark -->
       <div class="card" >
         <h5 class="card-header">list of consignments </h5>
-        <div class="table-responsive text-nowrap">
+        {{-- <div class="table-responsive text-nowrap"> --}}
           <table class="table table-bordered table-striped table-hover dataTable js-exportable">
             <thead class="table-dark">
               <tr>
@@ -60,7 +60,8 @@ rel="stylesheet">
                     </i> <strong>{{ $consignment->consignmentno }} </strong>
                 </td>
                 <td>
-                  {{ $consignment->dateofdispatch }}
+                  {{  \Carbon\Carbon::parse($consignment->dateofdispatch)->year(now()->format('Y'))->format('Y-m-d') }}
+               
                   </td>
                 <td>
                     {{ $consignment->driver->driver_name }} 
@@ -129,6 +130,9 @@ rel="stylesheet">
                         ><i class="bx bx-trash me-1"></i> Delete</a>
                         @endif
                         @endif
+
+                        <a class="dropdown-item" href="/trip/{{$consignment->consignmentno}}/create"
+                          ><i class="bx bx-edit-alt me-1"></i> Create Trip</a>
                     </div>
                     
                  
@@ -158,9 +162,9 @@ rel="stylesheet">
 
       </div>
       
-      <script src="{{ asset('assets/jquery-datatable/jquery.js') }}"></script>
-      
+      <script src="{{ asset('assets/jquery-datatable/jquery.js') }}"></script>      
       <script src="{{ asset('assets/jquery-datatable/jquery.dataTables.js') }}"></script>
+      <script src="{{ asset('assets/jquery-datatable/jquery.dataTables.min.js') }}"></script>
 
       <script src="{{ asset('assets/jquery-datatable/skin/bootstrap/js/dataTables.bootstrap.js') }}"></script>
       <script src="{{ asset('assets/jquery-datatable/extensions/export/dataTables.buttons.min.js') }}"></script>    
@@ -169,12 +173,12 @@ rel="stylesheet">
       <script src="{{ asset('assets/jquery-datatable/extensions/export/pdfmake.min.js') }}"></script>
       <script src="{{ asset('assets/jquery-datatable/extensions/export/vfs_fonts.js') }}"></script>
       <script src="{{ asset('assets/jquery-datatable/extensions/export/buttons.html5.min.js') }}"></script>
-      <script src="{{ asset('assets/jquery-datatable/extensions/export/buttons.print.min.js') }}"></script>
+      <script src="{{ asset('assets/jquery-datatable/extensions/export/buttons.print.min.js') }}"></script> --}}
       {{-- <script src="{{ asset('assets/jquery-datatable/jquery-datatable.js') }}"></script> --}}
 
 <script>
        $(document).ready(function() {
-                $('.js-exportable').DataTable( {
+                $('.js-exportable').dataTable( {
                     dom: 'Bfrtip',
                     buttons: [
                         'copy', 'csv', 'excel', 'pdf', 'print'

@@ -32,5 +32,10 @@ class consignment extends Model
     {
         return $this->belongsTo('App\Models\User','accuserclosedby');
     }
+
+    // public function trip()
+    // {
+    //     return $this->belongsTo('App\Models\tripfuel');
+    // }
   
 }

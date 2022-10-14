@@ -27,4 +27,8 @@ class tripfuel extends Model
     {
         return $this->belongsTo('App\Models\Fleet','fleet_id');
     }
+    // public function consignment()
+    // {
+    //     return $this->hasMany('App\Models\consignment');
+    // }
 }

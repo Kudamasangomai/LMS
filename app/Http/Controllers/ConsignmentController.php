@@ -23,15 +23,8 @@ class ConsignmentController extends Controller
      */
     public function index()
     {
-        // $data = array(
-        //     'title' =>  'Consignments',
-        //     'consignments' => consignment::orderBy('dateofdispatch', 'desc')->paginate(10),
-        // );
-        // return view('pages.consignments')->with($data);
-
-
-        $title = 'Consignments';
-       
+ 
+        $title = 'Consignments';      
         
         if(auth()->user()->roles == 3)
         {
