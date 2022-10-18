@@ -125,7 +125,7 @@ rel="stylesheet">
                         ><i class="bx bx-edit-alt me-1"></i> Edit</a>
 
                       <a class="dropdown-item" href="/consignments/{{$consignment->id}}/close"
-                      ><i class="bx bx-trash me-1"></i> Close trip </a>
+                      ><i class="bx bx-trash me-1"></i> Close Consigment </a>
                       <a class="dropdown-item" href="javascript:void(0);"
                         ><i class="bx bx-trash me-1"></i> Delete</a>
                         @endif
@@ -173,7 +173,7 @@ rel="stylesheet">
       <script src="{{ asset('assets/jquery-datatable/extensions/export/pdfmake.min.js') }}"></script>
       <script src="{{ asset('assets/jquery-datatable/extensions/export/vfs_fonts.js') }}"></script>
       <script src="{{ asset('assets/jquery-datatable/extensions/export/buttons.html5.min.js') }}"></script>
-      <script src="{{ asset('assets/jquery-datatable/extensions/export/buttons.print.min.js') }}"></script> --}}
+      <script src="{{ asset('assets/jquery-datatable/extensions/export/buttons.print.min.js') }}"></script>
       {{-- <script src="{{ asset('assets/jquery-datatable/jquery-datatable.js') }}"></script> --}}
 
 <script>

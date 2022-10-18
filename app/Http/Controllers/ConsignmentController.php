@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\consignment;
 use App\Models\driver;
 use App\Models\fleet;
+Use Illuminate\Support\Facades\DB;
 use DateTime;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
@@ -32,7 +33,7 @@ class ConsignmentController extends Controller
             return view('pages.consignments',compact('title','consignments'));
         }else
         {
-            $consignments = consignment::orderBy('dateofdispatch', 'desc')->paginate(5);
+            $consignments = consignment::orderBy('dateofdispatch', 'desc')->paginate(10);
             return view('pages.consignments',compact('title','consignments'));
         }
   
@@ -46,13 +47,17 @@ class ConsignmentController extends Controller
      */
     public function create()
     {
+       
         $data = array(
             'title' =>  'Create Consignments',
             'drivers' => driver::all(), // select * from drivers;
-            'fleet' => fleet::all(),
+            'fleet'=> fleet::all(),
+            //'fleet' => DB::select('SELECT * FROM consignments,fleets where consignments.fleetno = fleets.id and not consignments.Submitted= "Pending" '),
+            'closedConsigments' => consignment::where('fleetno', 'fleet'),
+        
 
         );
-
+        //dd($data);
         return view('pages.createconsignments')->with($data);
     }
 
@@ -89,8 +94,22 @@ class ConsignmentController extends Controller
         $consignment->accrecieved = 0;
         $consignment->accuserclosedby = 0;
 
-        $consignment->save();
-        return redirect('/consignments')->with('success', 'Consignment Created');
+        $test = $request->input('fleetno');
+        $query = DB::select('SELECT * FROM consignments,fleets 
+        where consignments.fleetno = '.$test.' and consignments.Submitted= "Pending" ');
+        
+        if($query)
+        {
+            return redirect('/consignments/create')->with('fleeterror', 'The Truck you Select is Still In Transit')
+            ->withInput($request->all());
+       
+        }else{
+            $consignment->save();
+             return redirect('/consignments')->with('success', 'Consignment Created');
+        }
+        
+
+      
     }
 
     /**
@@ -208,7 +227,8 @@ class ConsignmentController extends Controller
               ->orWhereHas('driver', function($query) use($search){
                 $query->where('driver_name', 'like', '%' . $search. '%');})
              ->orWhereHas('fleet', function($query) use($search){
-                $query->where('fleetno', 'like', '%' . $search. '%');})                
+                $query->where('fleetno', 'like', '%' . $search. '%');})
+              
              ->paginate(10);      
 
         return view('pages.consignments',compact('consignments','title'));

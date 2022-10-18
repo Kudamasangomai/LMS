@@ -13,6 +13,7 @@
           'enctype' => 'multipart/form-data']) 
           !!}
           <div class="row">
+            @include('inc.messages')
 
             <div class="mb-3 col-md-6">
                 <label for="html5-number-input" class="col-md-6 col-form-label">Consignment No</label>
@@ -75,10 +76,19 @@
           <div class="mb-3 col-md-6">
             <label for="defaultSelect" class="form-label">Fleet No</label>
             <select name="fleetno" id="defaultSelect" class="form-select">
-              @foreach($fleet as $fleet)
-              <option value="{{ $fleet->id }}">{{ $fleet->fleetno }}</option>
-          
+            
+              @foreach($fleet as $fleet)       
+                
+              <option value="{{ $fleet->id }}">
+              
+              
+                
+                {{ $fleet->fleetno }} - {{ $fleet->id }}
+            
+              </option>
+             
           @endforeach
+       
             </select>
             @error('fleetno')
             <p class="alert-danger">

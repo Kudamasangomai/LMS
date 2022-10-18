@@ -102,20 +102,32 @@ class TripController extends Controller
     public function show($id)
     {
         $trip = tripfuel::find($id);
-
         $data = array(
            'title' => 'Trip Report',
            'trip' => $trip,
-           'currentTime' => Carbon::now(),
-          'tripdays' => $trip->created_at->diffInDays($trip->updated_at, false)
+           'currentTime' => Carbon::now(),               
+          'tripdays' => $trip->created_at->diffInDays($trip->updated_at)
                     
     );
+  
         //$pdf = PDF::loadView('myPDF', $data);
        return view('trip.tripdetail')->with($data);
     }
 
     
 
+
+
+
+     
+
+  
+
+    
+  
+
+
+ 
     /**
      * Show the form for editing the specified resource.
      *
