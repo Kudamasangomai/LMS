@@ -1,6 +1,10 @@
 
 @if(session('success'))
-<div class="alert alert-success" role="alert">
+<div
+    x-data="{show: true}" 
+    x-init="setTimeout(() => show = false, 4000)"
+    x-show="show"
+class="alert alert-success" role="alert">
         {{session('success')}}
     </div>
 @endif
